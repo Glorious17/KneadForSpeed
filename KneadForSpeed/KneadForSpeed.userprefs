@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Touchscript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\diagonalMovement.cs">
     <Files>
-      <File FileName="Assets\Touchscript.cs" Line="33" Column="4" />
+      <File FileName="Assets\scripts\diagonalMovement.cs" Line="12" Column="37" />
+      <File FileName="..\..\codeislife\UNity\foerderband\Assets\scripts\patternDrop.cs" Line="10" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

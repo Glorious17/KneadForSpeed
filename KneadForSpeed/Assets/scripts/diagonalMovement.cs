@@ -6,24 +6,63 @@ public class diagonalMovement : MonoBehaviour
 
     public GameObject signal;
 
-    GameObject s;
+	private float movementX = 0;
+	private float movementZ = 0;
 
-    public float movementX = 5, movementZ = 5;
+	private const float spawntime = 300f;
+	private float spawning = 0f;
+	private float faktor = 500f;
 
-    // Use this for initialization
     void Start()
     {
-
-        s = Instantiate(signal);
-
-        //s.transform.position = new Vector3(s.transform.position.x, s.transform.position.y, s.transform.position.z + 5*Time.deltaTime);
+		spawn();
     }
-
-    // Update is called once per frame
+		
     void Update()
-    {
+    {		
+		if (spawning >= spawntime) 
+		{
+			spawn ();
+			spawning = 0;
+		}	
 
-        s.transform.position = new Vector3(s.transform.position.x + movementX * Time.deltaTime, s.transform.position.y, s.transform.position.z + movementZ * Time.deltaTime);
+		spawning += Time.time;// * Time.deltaTime;
+		Debug.Log (spawning);
 
     }
+
+	void spawn()
+	{
+		GameObject kugel = Instantiate(signal);
+		zufallPosition();
+		kugel.GetComponent<Rigidbody> ().AddForce (new Vector3 (movementX, 0, movementZ), ForceMode.Impulse);
+	}
+
+	void zufallPosition()
+	{
+		int rand = Random.Range (0, 4);
+
+		switch (rand) {
+		case 0:
+			movementX = Screen.width / faktor;
+			movementZ = Screen.height / faktor;
+			break;
+
+		case 1:
+			movementX = Screen.width / faktor * (-1);
+			movementZ = Screen.height / faktor;
+			break;
+
+		case 2:
+			movementX = Screen.width / faktor;
+			movementZ = Screen.height / faktor * (-1);
+			break;
+
+		case 3:
+			movementX = Screen.width / faktor * (-1);
+			movementZ = Screen.height / faktor * (-1);
+			break;
+		}
+	}
+		
 }
