@@ -1,46 +1,66 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class diagonalMovement : MonoBehaviour
 {
 
     public GameObject signal;
 
-	private float movementX = 0;
-	private float movementZ = 0;
+	private float movementX = 3;
+	private float movementZ = 3;
 
 	private const float spawntime = 300f;
 	private float spawning = 0f;
 	private float faktor = 500f;
+    GameObject s;
+
+    List<GameObject> signals = new List<GameObject>();
 
     void Start()
     {
 		spawn();
     }
-		
+
     void Update()
-    {		
-		if (spawning >= spawntime) 
-		{
-			spawn ();
-			spawning = 0;
-		}	
+    {
+        if (spawning >= spawntime)
+        {
+            spawn();
+            spawning = 0;
+        }
 
-		spawning += Time.time;// * Time.deltaTime;
-		Debug.Log (spawning);
+        spawning += Time.time;// * Time.deltaTime;
+        Debug.Log(spawning);
 
+        foreach (GameObject go in signals)
+        {
+            if (go.transform.position.x <= -7 || go.transform.position.x >= 7)
+            {
+                Destroy(go);
+            }
+        }
     }
 
 	void spawn()
 	{
-		GameObject kugel = Instantiate(signal);
-		zufallPosition();
-		kugel.GetComponent<Rigidbody> ().AddForce (new Vector3 (movementX, 0, movementZ), ForceMode.Impulse);
+		s = Instantiate(signal);
+		randPos();
+		s.GetComponent<Rigidbody> ().AddForce (new Vector3 (movementX, 0, movementZ), ForceMode.Impulse);
+
+        signals.Add(s); // adding Object to an List
 	}
 
-	void zufallPosition()
+	void randPos()
 	{
-		int rand = Random.Range (0, 4);
+        //choose between the directions, signum = Vorzeichen
+        //random directions
+        int signum = Random.Range(0, 2) * 2 - 1;
+        movementX *= signum;
+
+        signum = Random.Range(0, 2) * 2 - 1;
+        movementZ *= signum;
+        /*int rand = Random.Range (0, 4);
 
 		switch (rand) {
 		case 0:
@@ -61,8 +81,7 @@ public class diagonalMovement : MonoBehaviour
 		case 3:
 			movementX = Screen.width / faktor * (-1);
 			movementZ = Screen.height / faktor * (-1);
-			break;
-		}
-	}
+			break;*/
+    }
 		
 }
