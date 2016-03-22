@@ -44,7 +44,7 @@ public class diagonalMovement : MonoBehaviour
                 {
                     signals.Remove(go); //remove GameObject from List
                     Destroy(go); //destroy GameObject
-                    break; //size of list has been changed and demands "break"
+                    break; //size of list has been changed and demands a "break"
                 }
             }
         }
@@ -57,15 +57,14 @@ public class diagonalMovement : MonoBehaviour
 		s.GetComponent<Rigidbody> ().AddForce (new Vector3 (movementX, 0, movementZ), ForceMode.Impulse);
 
         signals.Add(s); // adding Object to an List
-        Debug.Log("successfully added");
 	}
 
 	void randPos()
 	{
         //choose between the directions, signum = Vorzeichen
         //random directions
-        int signum = Random.Range(0, 2) * 2 - 1;
-        movementX *= signum;
+        int signum = Random.Range(0, 2) * 2 - 1; //Vorzeichen variiert zwischen -1 und 1
+        movementX *= signum; //Vorzeichenwechsel
 
         signum = Random.Range(0, 2) * 2 - 1;
         movementZ *= signum;

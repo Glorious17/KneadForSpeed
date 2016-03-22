@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Touchscript : MonoBehaviour {
 
+    public Camera cam;
 	void Update () 
 	{
 		if (Input.touchCount > 0)
@@ -32,7 +33,14 @@ public class Touchscript : MonoBehaviour {
 						}
 					}
 				}
-			}
+
+                //erster Versuch, Signale bei Berührung zu löschen
+                Ray touchRay = cam.ScreenPointToRay(mytouches[i].position);
+                RaycastHit hit;
+                if (Physics.Raycast(touchRay, out hit) && hit.collider.gameObject.tag == "Signal")
+                    Destroy(hit.collider.gameObject);
+
+            }
 		}
 	}
 }
