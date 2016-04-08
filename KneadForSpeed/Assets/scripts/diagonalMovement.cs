@@ -4,39 +4,57 @@ using System.Collections.Generic;
 
 public class diagonalMovement : MonoBehaviour
 {
+	public GameObject signal;
 
-    public GameObject signal;
+	private float movementX = 3f;
+	private float movementZ = 3f;
 
-	private float movementX = 3;
-	private float movementZ = 3;
+	private float spawntime = 3f;
+	private float spawnSpeed = 3f;
+	//private float faktor = 500f;
 
-	private const float spawntime = 300f;
-	private float spawning = 0f;
-	private float faktor = 500f;
-    GameObject s;
+	GameObject s;
 
-    List<GameObject> signals;
+	private double randomSpawn = 100;
+	//private float spwaning = 0f;
+	private float zweiSpawnHaeufigkeit = 25f;
+	private bool zweiterSpawn = false;
 
-    void Start()
-    {
-        spawn();
-    }
+	void Start()
+	{
 
-    void Update()
-    {
-        if (spawning >= spawntime)
-        {
-            spawn();
-            spawning = 0;
-        }
+		//spawn();
+	}
 
-        spawning += Time.time;// * Time.deltaTime;
-                              // Debug.Log(spawning);
+	void Update()
+	{
+		if (Time.realtimeSinceStartup >= spawntime)
+		{
+			if (randomSpawn < zweiSpawnHaeufigkeit) {
+				spawn ();
+				zweiterSpawn = true;
+				spawn ();
+				spawntime = Time.realtimeSinceStartup + spawnSpeed;
+				zweiterSpawn = false;
+			} else {
+				spawn ();
+				Debug.Log (Time.realtimeSinceStartup);
+				spawntime = Time.realtimeSinceStartup + spawnSpeed;
+			}
 
-    }
+		}
+
+		//spawning += Time.time;// * Time.deltaTime;
+		// Debug.Log(spawning);
+
+		//deleting obejcts which are out of bounds
+	
+	}
+
 
 	void spawn()
 	{
+		randomSpawn = Random.Range (0F, 199F);
 		s = Instantiate(signal);
 		randPos();
 		s.GetComponent<Rigidbody> ().AddForce (new Vector3 (movementX, 0, movementZ), ForceMode.Impulse);
@@ -45,14 +63,19 @@ public class diagonalMovement : MonoBehaviour
 
 	void randPos()
 	{
-        //choose between the directions, signum = Vorzeichen
-        //random directions
-        int signum = Random.Range(0, 2) * 2 - 1; //Vorzeichen variiert zwischen -1 und 1
-        movementX *= signum; //Vorzeichenwechsel
+		int signum = Random.Range (0, 2) * 2 - 1; //Vorzeichen variiert zwischen -1 und 1;
+		//choose between the directions, signum = Vorzeichen
+		//random directions
+		if (zweiterSpawn == false) {
+			//signum = Random.Range (0, 2) * 2 - 1; //Vorzeichen variiert zwischen -1 und 1
+			movementX *= signum; //Vorzeichenwechsel
+		} else {
+			movementX *= -1;
+		}
 
-        signum = Random.Range(0, 2) * 2 - 1;
-        movementZ *= signum;
-        /*int rand = Random.Range (0, 4);
+		signum = Random.Range(0, 2) * 2 - 1;
+		movementZ *= signum;
+		/*int rand = Random.Range (0, 4);
 
 		switch (rand) {
 		case 0:
@@ -74,6 +97,6 @@ public class diagonalMovement : MonoBehaviour
 			movementX = Screen.width / faktor * (-1);
 			movementZ = Screen.height / faktor * (-1);
 			break;*/
-    }
-		
+	}
+
 }
