@@ -59,8 +59,6 @@ public class Touchscript : MonoBehaviour
         //Mouse Positioning
         if (Input.GetMouseButtonDown(0))
         {
-
-            Debug.Log("Hallo");
             if (Input.mousePosition.y <= Screen.height / 2)
             {
                 //unten links
