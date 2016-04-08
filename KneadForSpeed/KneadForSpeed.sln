@@ -1,7 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{1BD8E38A-BA75-E866-D583-2770DCDB97E7}") = "KneadForSpeed", "Assembly-CSharp.csproj", "{7FD4E797-AC0B-FD21-D2D3-8C14EEEEC99A}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KneadForSpeed.CSharp", "KneadForSpeed.CSharp.csproj", "{57AD1F32-3D52-83F4-01BE-4CCBE72FD83E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,36 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7FD4E797-AC0B-FD21-D2D3-8C14EEEEC99A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7FD4E797-AC0B-FD21-D2D3-8C14EEEEC99A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7FD4E797-AC0B-FD21-D2D3-8C14EEEEC99A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7FD4E797-AC0B-FD21-D2D3-8C14EEEEC99A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57AD1F32-3D52-83F4-01BE-4CCBE72FD83E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57AD1F32-3D52-83F4-01BE-4CCBE72FD83E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57AD1F32-3D52-83F4-01BE-4CCBE72FD83E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57AD1F32-3D52-83F4-01BE-4CCBE72FD83E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-<<<<<<< HEAD
-		GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
-		Policies = $0
-		$0.TextStylePolicy = $1
-		$1.inheritsSet = null
-		$1.scope = text/x-csharp
-		$0.CSharpFormattingPolicy = $2
-		$2.inheritsSet = Mono
-		$2.inheritsScope = text/x-csharp
-		$2.scope = text/x-csharp
-		$0.TextStylePolicy = $3
-		$3.FileWidth = 120
-		$3.TabWidth = 4
-		$3.IndentWidth = 4
-		$3.EolMarker = Unix
-		$3.inheritsSet = Mono
-		$3.inheritsScope = text/plain
-		$3.scope = text/plain
-=======
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
->>>>>>> d103851e98e44d55ab435089b42bc8e23b4bccd9
 	EndGlobalSection
 EndGlobal

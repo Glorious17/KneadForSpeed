@@ -31,10 +31,6 @@ public class Touchscript : MonoBehaviour
 
 	public Camera cam;
 
-	private Vector3 untenrechts = new Vector3(5, 0, - 5);
-
-	private GameObject triggerUR = GameObject.Find("Untenrechts");
-
 	void Start()
 	{
 		
@@ -57,69 +53,106 @@ public class Touchscript : MonoBehaviour
 	
 	void Update () 
 	{
-		if (Input.GetMouseButtonDown (0)) {
-			if (Input.mousePosition.y <= Screen.height / 2) {
-				//unten links
-				if (Input.mousePosition.x <= Screen.width / 2) {
-					List<GameObject> signals = triggerUL.GetComponent<TriggerScript> ().Signals;
-					if (signals.Count > 0) {
-						Vector3 sigPos = signals [0].transform.position;
-						Debug.Log (untenlinks - sigPos);
-					}
-				}
-				
-				if (mytouches[i].position.x <= Screen.width / 2) 
-					{
+
+        moveBack();
+
+        //Mouse Positioning
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            Debug.Log("Hallo");
+            if (Input.mousePosition.y <= Screen.height / 2)
+            {
+                //unten links
+                if (Input.mousePosition.x <= Screen.width / 2)
+                {
+
+                    moveTo(UL, center);
+                    List<GameObject> signals = triggerUL.GetComponent<TriggerScript>().Signals;
+                    if (signals.Count > 0)
+                    {
+                        Vector3 sigPos = signals[0].transform.position;
+                        Debug.Log(untenlinks - sigPos);
+                    }
+                }
+                //unten rechts
+                if (Input.mousePosition.x > Screen.width / 2)
+                {
+                    moveTo(UR, center);
+                    List<GameObject> signals = triggerUR.GetComponent<TriggerScript>().Signals;
+                    if (signals.Count > 0)
+                    {
+                        Vector3 sigPos = signals[0].transform.position;
+                        Debug.Log(untenrechts - sigPos);
+                    }
+                }
+            }
+
+            if (Input.mousePosition.y > Screen.height / 2)
+            {
+                //oben links
+                if (Input.mousePosition.x <= Screen.width / 2)
+                {
+                    moveTo(OL, center);
+                    List<GameObject> signals = triggerOL.GetComponent<TriggerScript>().Signals;
+                    if (signals.Count > 0)
+                    {
+                        Vector3 sigPos = signals[0].transform.position;
+                        Debug.Log(obenlinks - sigPos);
+                    }
+                }
+                //oben rechts
+                if (Input.mousePosition.x > Screen.width / 2)
+                {
+                    moveTo(OR, center);
+                    List<GameObject> signals = triggerOR.GetComponent<TriggerScript>().Signals;
+                    if (signals.Count > 0)
+                    {
+                        Vector3 sigPos = signals[0].transform.position;
+                        Debug.Log(obenrechts - sigPos);
+                    }
+                }
+
+            }
+
+        }
+
+
+        //Touch Positioning
+
+        if (Input.touchCount > 0)
+		{
+
+			//Touch mytouch = Input.GetTouch (0);
+
+			Touch[] mytouches = Input.touches;
+
+			for(int i = 0; i < Input.touchCount; i++)
+			{
+				if (mytouches[i].phase == TouchPhase.Began) {
+
+					if (mytouches[i].position.y <= Screen.height / 2) {
+						//unten links
+						if (mytouches[i].position.x <= Screen.width / 2) 
+						{
 							moveTo(UL, center);
-					}
-				//unten rechts
-				if (Input.mousePosition.x > Screen.width / 2) {
-					
-					List<GameObject> signals = triggerUR.GetComponent<TriggerScript> ().Signals;
-					if (signals.Count > 0) {
-						Vector3 sigPos = signals [0].transform.position;
-						Debug.Log (untenrechts - sigPos);
-					}
-				}
-				
-				if (mytouches[i].position.x > Screen.width / 2) 
-						{
-							moveTo(UR, center);
 						}
-			}
 
-			if (Input.mousePosition.y > Screen.height / 2) {
-				//oben links
-				if (Input.mousePosition.x <= Screen.width / 2) {
-					
-					List<GameObject> signals = triggerOL.GetComponent<TriggerScript> ().Signals;
-					if (signals.Count > 0) {
-						Vector3 sigPos = signals [0].transform.position;
-						Debug.Log (obenlinks - sigPos);
-					}				
-				}
-				
-				if (mytouches[i].position.x <= Screen.width / 2)
-						{
-							moveTo(OL, center);
+					}
+
+					if (mytouches [i].position.y > Screen.height / 2) {
+						//oben links
+						if (mytouches [i].position.x <= Screen.width / 2) {
+							moveTo (OL, center);
 						}
-				//oben rechts
-				if (Input.mousePosition.x > Screen.width / 2) {
-
-					List<GameObject> signals = triggerOR.GetComponent<TriggerScript> ().Signals;
-					if (signals.Count > 0) {
-						Vector3 sigPos = signals [0].transform.position;
-						Debug.Log (obenrechts - sigPos);
+					}
+							
+						//oben rechts
+					if (mytouches[i].position.x > Screen.width / 2) {
+								moveTo(OR, center);
 					}
 				}
-				
-				if (mytouches[i].position.x > Screen.width / 2) 
-				{
-					moveTo(OR, center);
-				}
-			
 			}
-				
 		}
 
 		/**if(Input.GetKey("up"))
