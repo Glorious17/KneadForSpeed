@@ -71,6 +71,9 @@ public class Touchscript : MonoBehaviour
                     {
                         Vector3 sigPos = signals[0].transform.position;
                         Debug.Log(untenlinks - sigPos);
+                        GameObject go = signals[0];
+                        signals.Remove(signals[0]);
+                        Destroy(go);
                     }
                 }
                 //unten rechts
@@ -82,6 +85,9 @@ public class Touchscript : MonoBehaviour
                     {
                         Vector3 sigPos = signals[0].transform.position;
                         Debug.Log(untenrechts - sigPos);
+                        GameObject go = signals[0];
+                        signals.Remove(signals[0]);
+                        Destroy(go);
                     }
                 }
             }
@@ -97,6 +103,9 @@ public class Touchscript : MonoBehaviour
                     {
                         Vector3 sigPos = signals[0].transform.position;
                         Debug.Log(obenlinks - sigPos);
+                        GameObject go = signals[0];
+                        signals.Remove(signals[0]);
+                        Destroy(go);
                     }
                 }
                 //oben rechts
@@ -108,6 +117,9 @@ public class Touchscript : MonoBehaviour
                     {
                         Vector3 sigPos = signals[0].transform.position;
                         Debug.Log(obenrechts - sigPos);
+                        GameObject go = signals[0];
+                        signals.Remove(signals[0]);
+                        Destroy(go);
                     }
                 }
 
@@ -134,7 +146,16 @@ public class Touchscript : MonoBehaviour
 						if (mytouches[i].position.x <= Screen.width / 2) 
 						{
 							moveTo(UL, center);
-						}
+                            List<GameObject> signals = triggerUL.GetComponent<TriggerScript>().Signals;
+                            if (signals.Count > 0)
+                            {
+                                Vector3 sigPos = signals[0].transform.position;
+                                Debug.Log(untenlinks - sigPos);
+                                GameObject go = signals[0];
+                                signals.Remove(signals[0]);
+                                Destroy(go);
+                            }
+                        }
 
 					}
 
@@ -142,14 +163,47 @@ public class Touchscript : MonoBehaviour
 						//oben links
 						if (mytouches [i].position.x <= Screen.width / 2) {
 							moveTo (OL, center);
-						}
+                            List<GameObject> signals = triggerOL.GetComponent<TriggerScript>().Signals;
+                            if (signals.Count > 0)
+                            {
+                                Vector3 sigPos = signals[0].transform.position;
+                                Debug.Log(obenlinks - sigPos);
+                                GameObject go = signals[0];
+                                signals.Remove(signals[0]);
+                                Destroy(go);
+                            }
+                        }
 					}
 							
 						//oben rechts
 					if (mytouches[i].position.x > Screen.width / 2) {
-								moveTo(OR, center);
-					}
-				}
+						moveTo(OR, center);
+                        List<GameObject> signals = triggerOR.GetComponent<TriggerScript>().Signals;
+                        if (signals.Count > 0)
+                        {
+                            Vector3 sigPos = signals[0].transform.position;
+                            Debug.Log(obenrechts - sigPos);
+                            GameObject go = signals[0];
+                            signals.Remove(signals[0]);
+                            Destroy(go);
+                        }
+                    }
+
+                    //unten rechts
+                    if (mytouches[i].position.x > Screen.width / 2)
+                    {
+                        moveTo(UR, center);
+                        List<GameObject> signals = triggerUR.GetComponent<TriggerScript>().Signals;
+                        if (signals.Count > 0)
+                        {
+                            Vector3 sigPos = signals[0].transform.position;
+                            Debug.Log(untenrechts - sigPos);
+                            GameObject go = signals[0];
+                            signals.Remove(signals[0]);
+                            Destroy(go);
+                        }
+                    }
+                }
 			}
 		}
 
