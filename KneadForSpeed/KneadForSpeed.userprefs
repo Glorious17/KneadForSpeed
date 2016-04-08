@@ -1,9 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\diagonalMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Touchscript.cs">
     <Files>
-      <File FileName="Assets\scripts\diagonalMovement.cs" Line="12" Column="37" />
-      <File FileName="..\..\codeislife\UNity\foerderband\Assets\scripts\patternDrop.cs" Line="10" Column="24" />
+      <File FileName="Assets\scripts\Touchscript.cs" Line="137" Column="1" />
+      <File FileName="Assets\scripts\diagonalMovement.cs" Line="116" Column="1" />
+      <File FileName="..\..\asdf\KneadForSpeed\KneadForSpeed\Assets\scripts\Touchscript.cs" Line="7" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
