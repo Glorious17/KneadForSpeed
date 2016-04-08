@@ -10,9 +10,9 @@ public class diagonalMovement : MonoBehaviour
 	private float movementX = 3;
 	private float movementZ = 3;
 
-	private const float spawntime = 300f;
-	private float spawning = 0f;
-	private float faktor = 500f;
+	private float spawntime = 3f;
+    private float spawnSpeed = 3f;
+	//private float faktor = 500f;
     GameObject s;
 
     List<GameObject> signals;
@@ -20,27 +20,27 @@ public class diagonalMovement : MonoBehaviour
     void Start()
     {
         signals = new List<GameObject>();
-        spawn();
+        //spawn();
     }
 
     void Update()
     {
-        if (spawning >= spawntime)
+        if (Time.realtimeSinceStartup >= spawntime)
         {
             spawn();
-            spawning = 0;
+            Debug.Log(Time.realtimeSinceStartup);
+            spawntime = Time.realtimeSinceStartup + spawnSpeed;
         }
 
-        spawning += Time.time;// * Time.deltaTime;
+        //spawning += Time.time;// * Time.deltaTime;
                               // Debug.Log(spawning);
-
 
         //deleting obejcts which are out of bounds
         if (signals.Count > 0)
         {
             foreach (GameObject go in signals)
             {//borders are -7 and 7 yet, dynamic borders are preferred
-                if (go.transform.position.x <= -9 || go.transform.position.x >= 9)
+                if (go.transform.position.x <= -7 || go.transform.position.x >= 7)
                 {
                     signals.Remove(go); //remove GameObject from List
                     Destroy(go); //destroy GameObject
