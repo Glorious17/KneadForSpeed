@@ -19,7 +19,6 @@ public class diagonalMovement : MonoBehaviour
 
     void Start()
     {
-        signals = new List<GameObject>();
         spawn();
     }
 
@@ -34,20 +33,6 @@ public class diagonalMovement : MonoBehaviour
         spawning += Time.time;// * Time.deltaTime;
                               // Debug.Log(spawning);
 
-
-        //deleting obejcts which are out of bounds
-        if (signals.Count > 0)
-        {
-            foreach (GameObject go in signals)
-            {//borders are -7 and 7 yet, dynamic borders are preferred
-                if (go.transform.position.x <= -9 || go.transform.position.x >= 9)
-                {
-                    signals.Remove(go); //remove GameObject from List
-                    Destroy(go); //destroy GameObject
-                    break; //size of list has been changed and demands a "break"
-                }
-            }
-        }
     }
 
 	void spawn()
@@ -56,7 +41,6 @@ public class diagonalMovement : MonoBehaviour
 		randPos();
 		s.GetComponent<Rigidbody> ().AddForce (new Vector3 (movementX, 0, movementZ), ForceMode.Impulse);
 
-        signals.Add(s); // adding Object to an List
 	}
 
 	void randPos()

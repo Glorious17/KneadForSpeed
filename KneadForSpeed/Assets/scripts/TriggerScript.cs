@@ -6,11 +6,11 @@ public class TriggerScript : MonoBehaviour {
 
     List<GameObject> signals = new List<GameObject>();
 
-    public GameObject Signals   // Accessor
+    public List<GameObject> Signals   // Accessor
     {
         get
         {
-            return signals[0];
+			return signals;
         }
     }
 
@@ -28,6 +28,8 @@ public class TriggerScript : MonoBehaviour {
         if (col.gameObject.tag == "Signal")
         {
             signals.Remove(col.gameObject);
+			Destroy (col.gameObject);
+
             Debug.Log("signalOUT!!!");
         }
     }
