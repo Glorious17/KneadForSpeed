@@ -9,48 +9,57 @@ public class diagonalMovement : MonoBehaviour
 	private float movementX = 3f;
 	private float movementZ = 3f;
 
-	private float spawntime = 3f;
-	private float spawnSpeed = 3f;
+    private double randomSpawn = 100;
+    private float zweiSpawnHaeufigkeit = 25f;
+    private bool zweiterSpawn = false;
+    private float spawntime = 3f;
+    private float spawnSpeed = 10f;
+    private float fasterSpawnTime = 0;
+    private float fastesSpeed = 0.5f; //Umso kleiner diese Zahl ist, umso schneller ist die maximale Geschwindigkeit
 	//private float faktor = 500f;
 
 	GameObject s;
 
-	private double randomSpawn = 100;
-	//private float spwaning = 0f;
-	private float zweiSpawnHaeufigkeit = 25f;
-	private bool zweiterSpawn = false;
 
-	void Start()
-	{
+    void Start()
+    {
+        //spawn();
+    }
 
-		//spawn();
-	}
+    void Update()
+    {
+        if (Time.realtimeSinceStartup >= spawntime)
+        {
+            if (randomSpawn < zweiSpawnHaeufigkeit)
+            {
+                spawn();
+                zweiterSpawn = true;
+                spawn();
+                spawntime = Time.realtimeSinceStartup + spawnSpeed;
+                zweiterSpawn = false;
+            }
+            else {
+                spawn();
+                Debug.Log(Time.realtimeSinceStartup);
+                spawntime = Time.realtimeSinceStartup + spawnSpeed;
+            }
+        }
+        if (fasterSpawnTime >= 10)
+        {
+            spawnSpeed /= 2;
+            if(spawnSpeed < fastesSpeed)
+            {
+                spawnSpeed = fastesSpeed;
+            }
+            fasterSpawnTime = 0;
+            Debug.Log("fasterSpawnTime = 0");
+        }
+        fasterSpawnTime += Time.deltaTime;
 
-	void Update()
-	{
-		if (Time.realtimeSinceStartup >= spawntime)
-		{
-			if (randomSpawn < zweiSpawnHaeufigkeit) {
-				spawn ();
-				zweiterSpawn = true;
-				spawn ();
-				spawntime = Time.realtimeSinceStartup + spawnSpeed;
-				zweiterSpawn = false;
-			} else {
-				spawn ();
-				Debug.Log (Time.realtimeSinceStartup);
-				spawntime = Time.realtimeSinceStartup + spawnSpeed;
-			}
+        //spawning += Time.time;// * Time.deltaTime;
+                              // Debug.Log(spawning);
 
-		}
-
-		//spawning += Time.time;// * Time.deltaTime;
-		// Debug.Log(spawning);
-
-		//deleting obejcts which are out of bounds
-	
-	}
-
+    }
 
 	void spawn()
 	{

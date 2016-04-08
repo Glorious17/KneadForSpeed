@@ -1,10 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Touchscript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\StartSceneGUI.cs">
     <Files>
+<<<<<<< HEAD
       <File FileName="Assets\scripts\diagonalMovement.cs" Line="21" Column="36" />
       <File FileName="Assets\scripts\Touchscript.cs" Line="39" Column="45" />
       <File FileName="Assets\scripts\TriggerScript.cs" Line="11" Column="12" />
+=======
+      <File FileName="Assets\scripts\StartSceneGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\Touchscript.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\diagonalMovement.cs" Line="1" Column="1" />
+>>>>>>> 87e892921b528d2ae23df6cbe7818a673194f28e
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
