@@ -40,7 +40,7 @@ public class diagonalMovement : MonoBehaviour
         {
             foreach (GameObject go in signals)
             {//borders are -7 and 7 yet, dynamic borders are preferred
-                if (go.transform.position.x <= -7 || go.transform.position.x >= 7)
+                if (go.transform.position.x <= -9 || go.transform.position.x >= 9)
                 {
                     signals.Remove(go); //remove GameObject from List
                     Destroy(go); //destroy GameObject
