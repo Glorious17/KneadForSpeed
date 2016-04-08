@@ -1,20 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\StartSceneGUI.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Lights.cs">
     <Files>
-<<<<<<< HEAD
-      <File FileName="Assets\scripts\diagonalMovement.cs" Line="21" Column="36" />
-      <File FileName="Assets\scripts\Touchscript.cs" Line="39" Column="45" />
-      <File FileName="Assets\scripts\TriggerScript.cs" Line="11" Column="12" />
-=======
-      <File FileName="Assets\scripts\StartSceneGUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\Touchscript.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\diagonalMovement.cs" Line="1" Column="1" />
->>>>>>> 87e892921b528d2ae23df6cbe7818a673194f28e
+      <File FileName="Assets\scripts\Lights.cs" Line="71" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Acer Tab\Desktop\KneadForSpeed\KneadForSpeed\Assets\scripts\Lights.cs" line="58" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
