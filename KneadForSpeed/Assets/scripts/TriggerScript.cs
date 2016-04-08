@@ -2,21 +2,22 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TriggerScript : MonoBehaviour {
+public class TriggerScript : MonoBehaviour
+{
 
     List<GameObject> signals = new List<GameObject>();
 
-    public GameObject Signals   // Accessor
+    public List<GameObject> Signals   // Accessor
     {
         get
         {
-            return signals[0];
+            return signals;
         }
     }
 
     void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == "Signal")
+        if (col.gameObject.tag == "Signal")
         {
             signals.Add(col.gameObject);
             Debug.Log("signalINNNNN!!!");
@@ -28,6 +29,8 @@ public class TriggerScript : MonoBehaviour {
         if (col.gameObject.tag == "Signal")
         {
             signals.Remove(col.gameObject);
+            Destroy(col.gameObject);
+
             Debug.Log("signalOUT!!!");
         }
     }
