@@ -10,8 +10,10 @@ public class diagonalMovement : MonoBehaviour
 	private float movementX = 3f;
 	private float movementZ = 3f;
 
-	private float spawntime = 3f;
-<<<<<<< HEAD
+    private double randomSpawn = 100;
+    private float zweiSpawnHaeufigkeit = 25f;
+    private bool zweiterSpawn = false;
+    private float spawntime = 3f;
     private float spawnSpeed = 10f;
     private float fasterSpawnTime = 0;
     private float fastesSpeed = 0.5f; //Umso kleiner diese Zahl ist, umso schneller ist die maximale Geschwindigkeit
@@ -30,9 +32,19 @@ public class diagonalMovement : MonoBehaviour
     {
         if (Time.realtimeSinceStartup >= spawntime)
         {
-            spawn();
-            Debug.Log(Time.realtimeSinceStartup);
-            spawntime = Time.realtimeSinceStartup + spawnSpeed;
+            if (randomSpawn < zweiSpawnHaeufigkeit)
+            {
+                spawn();
+                zweiterSpawn = true;
+                spawn();
+                spawntime = Time.realtimeSinceStartup + spawnSpeed;
+                zweiterSpawn = false;
+            }
+            else {
+                spawn();
+                Debug.Log(Time.realtimeSinceStartup);
+                spawntime = Time.realtimeSinceStartup + spawnSpeed;
+            }
         }
         if (fasterSpawnTime >= 10)
         {
@@ -63,60 +75,6 @@ public class diagonalMovement : MonoBehaviour
             }
         }
     }
-=======
-	private float spawnSpeed = 3f;
-	//private float faktor = 500f;
-
-	GameObject s;
-
-	private double randomSpawn = 100;
-	//private float spwaning = 0f;
-	private float zweiSpawnHaeufigkeit = 25f;
-	private bool zweiterSpawn = false;
-	List<GameObject> signals;
-
-	void Start()
-	{
-		signals = new List<GameObject>();
-		//spawn();
-	}
-
-	void Update()
-	{
-		if (Time.realtimeSinceStartup >= spawntime)
-		{
-			if (randomSpawn < zweiSpawnHaeufigkeit) {
-				spawn ();
-				zweiterSpawn = true;
-				spawn ();
-				spawntime = Time.realtimeSinceStartup + spawnSpeed;
-				zweiterSpawn = false;
-			} else {
-				spawn ();
-				Debug.Log (Time.realtimeSinceStartup);
-				spawntime = Time.realtimeSinceStartup + spawnSpeed;
-			}
-
-		}
-
-		//spawning += Time.time;// * Time.deltaTime;
-		// Debug.Log(spawning);
-
-		//deleting obejcts which are out of bounds
-		if (signals.Count > 0)
-		{
-			foreach (GameObject go in signals)
-			{//borders are -7 and 7 yet, dynamic borders are preferred
-				if (go.transform.position.x <= -7 || go.transform.position.x >= 7)
-				{
-					signals.Remove(go); //remove GameObject from List
-					Destroy(go); //destroy GameObject
-					break; //size of list has been changed and demands a "break"
-				}
-			}
-		}
-	}
->>>>>>> d103851e98e44d55ab435089b42bc8e23b4bccd9
 
 	void spawn()
 	{
