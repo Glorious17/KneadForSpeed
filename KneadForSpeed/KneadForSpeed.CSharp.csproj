@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\scripts\EndSceneGUI.cs" />
+    <Compile Include="Assets\scripts\Lights.cs" />
     <Compile Include="Assets\scripts\StartSceneGUI.cs" />
     <Compile Include="Assets\scripts\Touchscript.cs" />
     <Compile Include="Assets\scripts\TriggerScript.cs" />
