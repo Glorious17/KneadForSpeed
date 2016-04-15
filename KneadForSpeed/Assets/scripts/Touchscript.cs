@@ -6,178 +6,154 @@ public class Touchscript : MonoBehaviour
 {
 	float speed = 0.2f;
 
-    //Optimal Points 
+	private int optimalPosition = 5;
 
-    private int optimalPosition = 5;
 	private Vector3 untenrechts = new Vector3(5, 0, - 5);
 	private Vector3 obenrechts = new Vector3(5, 0, 5);
 	private Vector3 untenlinks = new Vector3(-5, 0, -5);
 	private Vector3 obenlinks = new Vector3(-5, 0, 5);
 	
-    //Triggerboxes
 	private GameObject triggerUR;
 	private GameObject triggerUL;
 	private GameObject triggerOR;
 	private GameObject triggerOL;
 
-    //Bolts
 	public GameObject OL;
 	public GameObject OR;
 	public GameObject UL;
 	public GameObject UR;
 	public GameObject center;
 
-    //Startposition Bolts
-	private GameObject oOL;
-	private GameObject oOR;
-	private GameObject oUL;
-	private GameObject oUR;
+	public GameObject oOL;
+	public GameObject oOR;
+	public GameObject oUL;
+	public GameObject oUR;
 
 	private float abstand = 2.5f;
 
 	public Camera cam;
 
-	void Start()
+	void calculatePoints(float distance)
 	{
-		
-		triggerUR = GameObject.Find("Untenrechts");
-		triggerUL = GameObject.Find("Untenlinks");
-		triggerOR = GameObject.Find("Obenrechts");
-		triggerOL = GameObject.Find("Obenlinks");
-		
-		//Speichert Anfangspositionen
-		oOL = new GameObject();
-		oOR = new GameObject();
-		oUL = new GameObject();
-		oUR = new GameObject();
 
-		oOL.transform.position = new Vector3(OL.transform.position.x,OL.transform.position.y,OL.transform.position.z);
-		oOR.transform.position = new Vector3(OR.transform.position.x,OR.transform.position.y,OR.transform.position.z);
-		oUL.transform.position = new Vector3(UL.transform.position.x,UL.transform.position.y,UL.transform.position.z);
-		oUR.transform.position = new Vector3(UR.transform.position.x,UR.transform.position.y,UR.transform.position.z);
+
+		if(distance > - 0.2 && distance < 0.2)      //Guter Treffer
+		{
+			Debug.Log("Good Shit");
+		}else if(distance < 0.5 && distance > 0.2)  //Mittelmäßiger Treffer
+		{
+			Debug.Log("Meh");
+		}
+		else                                        //Kein Treffer
+		{
+			Debug.Log("You suck!");
+		}
+
+
 	}
 
-    void calculatePoints(float distance)
-    {
-        
-
-        if(distance > - 0.2 && distance < 0.2)      //Guter Treffer
-        {
-            Debug.Log("Good Shit");
-        }else if(distance < 0.5 && distance > 0.2)  //Mittelmäßiger Treffer
-        {
-            Debug.Log("Meh");
-        }
-        else                                        //Kein Treffer
-        {
-            Debug.Log("You suck!");
-        }
-        
-
-    }
-	
 	void Update () 
 	{
 
-        moveBack();
+		moveBack();
 
-        //Mouse Positioning
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (Input.mousePosition.y <= Screen.height / 2)
-            {
-                //unten links
-                if (Input.mousePosition.x <= Screen.width / 2)
-                {
+		//Mouse Positioning
+		if (Input.GetMouseButtonDown(0))
+		{
+			if (Input.mousePosition.y <= Screen.height / 2)
+			{
+				//unten links
+				if (Input.mousePosition.x <= Screen.width / 2)
+				{
 
-                    moveTo(UL, center);
-                    List<GameObject> signals = triggerUL.GetComponent<TriggerScript>().Signals;
-                    
-                    
-                    if (signals.Count > 0)
-                    {
-                        Vector3 sigPos = signals[0].transform.position;
-                        float distance = optimalPosition + sigPos.x;
-
-                        Debug.Log(distance);
-                        calculatePoints(distance);
-
-                        GameObject go = signals[0];
-                        signals.Remove(signals[0]);
-                        Destroy(go);
-                    }
-                }
-                //unten rechts
-                if (Input.mousePosition.x > Screen.width / 2)
-                {
-                    moveTo(UR, center);
-                    List<GameObject> signals = triggerUR.GetComponent<TriggerScript>().Signals;
-                    if (signals.Count > 0)
-                    {
-                        Vector3 sigPos = signals[0].transform.position;
-                        float distance = optimalPosition - sigPos.x;
+					moveTo(UL, center);
+					List<GameObject> signals = triggerUL.GetComponent<TriggerScript>().Signals;
 
 
-                        Debug.Log(distance);
-                        calculatePoints(distance);
+					if (signals.Count > 0)
+					{
+						Vector3 sigPos = signals[0].transform.position;
+						float distance = optimalPosition + sigPos.x;
+
+						Debug.Log(distance);
+						calculatePoints(distance);
+
+						GameObject go = signals[0];
+						signals.Remove(signals[0]);
+						Destroy(go);
+					}
+				}
+				//unten rechts
+				if (Input.mousePosition.x > Screen.width / 2)
+				{
+					moveTo(UR, center);
+					List<GameObject> signals = triggerUR.GetComponent<TriggerScript>().Signals;
+					if (signals.Count > 0)
+					{
+						Vector3 sigPos = signals[0].transform.position;
+						float distance = optimalPosition - sigPos.x;
 
 
-                        GameObject go = signals[0];
-                        signals.Remove(signals[0]);
-                        Destroy(go);
-                    }
-                }
-            }
-
-            if (Input.mousePosition.y > Screen.height / 2)
-            {
-                //oben links
-                if (Input.mousePosition.x <= Screen.width / 2)
-                {
-                    moveTo(OL, center);
-                    List<GameObject> signals = triggerOL.GetComponent<TriggerScript>().Signals;
-                    if (signals.Count > 0)
-                    {
-                        Vector3 sigPos = signals[0].transform.position;
-                        float distance = optimalPosition + sigPos.x;
-
-                        Debug.Log(distance);
-                        calculatePoints(distance);
+						Debug.Log(distance);
+						calculatePoints(distance);
 
 
-                        GameObject go = signals[0];
-                        signals.Remove(signals[0]);
-                        Destroy(go);
-                    }
-                }
-                //oben rechts
-                if (Input.mousePosition.x > Screen.width / 2)
-                {
-                    moveTo(OR, center);
-                    List<GameObject> signals = triggerOR.GetComponent<TriggerScript>().Signals;
-                    if (signals.Count > 0)
-                    {
-                        Vector3 sigPos = signals[0].transform.position;
-                        float distance = optimalPosition - sigPos.x;
+						GameObject go = signals[0];
+						signals.Remove(signals[0]);
+						Destroy(go);
+					}
+				}
+			}
 
-                        Debug.Log(distance);
-                        calculatePoints(distance);
+			if (Input.mousePosition.y > Screen.height / 2)
+			{
+				//oben links
+				if (Input.mousePosition.x <= Screen.width / 2)
+				{
+					moveTo(OL, center);
+					List<GameObject> signals = triggerOL.GetComponent<TriggerScript>().Signals;
+					if (signals.Count > 0)
+					{
+						Vector3 sigPos = signals[0].transform.position;
+						float distance = optimalPosition + sigPos.x;
 
-
-                        GameObject go = signals[0];
-                        signals.Remove(signals[0]);
-                        Destroy(go);
-                    }
-                }
-
-            }
-
-        }
+						Debug.Log(distance);
+						calculatePoints(distance);
 
 
-        //Touch Positioning
+						GameObject go = signals[0];
+						signals.Remove(signals[0]);
+						Destroy(go);
+					}
+				}
+				//oben rechts
+				if (Input.mousePosition.x > Screen.width / 2)
+				{
+					moveTo(OR, center);
+					List<GameObject> signals = triggerOR.GetComponent<TriggerScript>().Signals;
+					if (signals.Count > 0)
+					{
+						Vector3 sigPos = signals[0].transform.position;
+						float distance = optimalPosition - sigPos.x;
 
-        if (Input.touchCount > 0)
+						Debug.Log(distance);
+						calculatePoints(distance);
+
+
+						GameObject go = signals[0];
+						signals.Remove(signals[0]);
+						Destroy(go);
+					}
+				}
+
+			}
+
+		}
+
+
+		//Touch Positioning
+
+		if (Input.touchCount > 0)
 		{
 
 			//Touch mytouch = Input.GetTouch (0);
@@ -193,16 +169,16 @@ public class Touchscript : MonoBehaviour
 						if (mytouches[i].position.x <= Screen.width / 2) 
 						{
 							moveTo(UL, center);
-                            List<GameObject> signals = triggerUL.GetComponent<TriggerScript>().Signals;
-                            if (signals.Count > 0)
-                            {
-                                Vector3 sigPos = signals[0].transform.position;
-                                Debug.Log(untenlinks - sigPos);
-                                GameObject go = signals[0];
-                                signals.Remove(signals[0]);
-                                Destroy(go);
-                            }
-                        }
+							List<GameObject> signals = triggerUL.GetComponent<TriggerScript>().Signals;
+							if (signals.Count > 0)
+							{
+								Vector3 sigPos = signals[0].transform.position;
+								Debug.Log(untenlinks - sigPos);
+								GameObject go = signals[0];
+								signals.Remove(signals[0]);
+								Destroy(go);
+							}
+						}
 
 					}
 
@@ -210,47 +186,47 @@ public class Touchscript : MonoBehaviour
 						//oben links
 						if (mytouches [i].position.x <= Screen.width / 2) {
 							moveTo (OL, center);
-                            List<GameObject> signals = triggerOL.GetComponent<TriggerScript>().Signals;
-                            if (signals.Count > 0)
-                            {
-                                Vector3 sigPos = signals[0].transform.position;
-                                Debug.Log(obenlinks - sigPos);
-                                GameObject go = signals[0];
-                                signals.Remove(signals[0]);
-                                Destroy(go);
-                            }
-                        }
+							List<GameObject> signals = triggerOL.GetComponent<TriggerScript>().Signals;
+							if (signals.Count > 0)
+							{
+								Vector3 sigPos = signals[0].transform.position;
+								Debug.Log(obenlinks - sigPos);
+								GameObject go = signals[0];
+								signals.Remove(signals[0]);
+								Destroy(go);
+							}
+						}
 					}
-							
-						//oben rechts
+
+					//oben rechts
 					if (mytouches[i].position.x > Screen.width / 2) {
 						moveTo(OR, center);
-                        List<GameObject> signals = triggerOR.GetComponent<TriggerScript>().Signals;
-                        if (signals.Count > 0)
-                        {
-                            Vector3 sigPos = signals[0].transform.position;
-                            Debug.Log(obenrechts - sigPos);
-                            GameObject go = signals[0];
-                            signals.Remove(signals[0]);
-                            Destroy(go);
-                        }
-                    }
+						List<GameObject> signals = triggerOR.GetComponent<TriggerScript>().Signals;
+						if (signals.Count > 0)
+						{
+							Vector3 sigPos = signals[0].transform.position;
+							Debug.Log(obenrechts - sigPos);
+							GameObject go = signals[0];
+							signals.Remove(signals[0]);
+							Destroy(go);
+						}
+					}
 
-                    //unten rechts
-                    if (mytouches[i].position.x > Screen.width / 2)
-                    {
-                        moveTo(UR, center);
-                        List<GameObject> signals = triggerUR.GetComponent<TriggerScript>().Signals;
-                        if (signals.Count > 0)
-                        {
-                            Vector3 sigPos = signals[0].transform.position;
-                            Debug.Log(untenrechts - sigPos);
-                            GameObject go = signals[0];
-                            signals.Remove(signals[0]);
-                            Destroy(go);
-                        }
-                    }
-                }
+					//unten rechts
+					if (mytouches[i].position.x > Screen.width / 2)
+					{
+						moveTo(UR, center);
+						List<GameObject> signals = triggerUR.GetComponent<TriggerScript>().Signals;
+						if (signals.Count > 0)
+						{
+							Vector3 sigPos = signals[0].transform.position;
+							Debug.Log(untenrechts - sigPos);
+							GameObject go = signals[0];
+							signals.Remove(signals[0]);
+							Destroy(go);
+						}
+					}
+				}
 			}
 		}
 
@@ -272,6 +248,7 @@ public class Touchscript : MonoBehaviour
 		}**/
 	}		
 
+
 	void moveTo(GameObject current, GameObject target)
 	{
 		while(current.transform.position != target.transform.position && 
@@ -287,5 +264,10 @@ public class Touchscript : MonoBehaviour
 		UL.transform.position = Vector3.MoveTowards (UL.transform.position, oUL.transform.position, speed);
 		OR.transform.position = Vector3.MoveTowards (OR.transform.position, oOR.transform.position, speed);
 		UR.transform.position = Vector3.MoveTowards (UR.transform.position, oUR.transform.position, speed);
+
+		OL.transform.rotation = OL.transform.rotation;
+		UL.transform.rotation = UL.transform.rotation;
+		OR.transform.rotation = OR.transform.rotation;
+		UR.transform.rotation = UR.transform.rotation;
 	}
 }
