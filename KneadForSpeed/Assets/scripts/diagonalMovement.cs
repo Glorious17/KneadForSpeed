@@ -13,9 +13,9 @@ public class diagonalMovement : MonoBehaviour
     private float zweiSpawnHaeufigkeit = 25f;
     private bool zweiterSpawn = false;
     private float spawntime = 3f;
-    private float spawnSpeed = 10f;
+    private float spawnSpeed = 5f;
     private float fasterSpawnTime = 0;
-    private float fastesSpeed = 0.5f; //Umso kleiner diese Zahl ist, umso schneller ist die maximale Geschwindigkeit
+    private float fastesSpeed = 0.4f; //Umso kleiner diese Zahl ist, umso schneller ist die maximale Geschwindigkeit der Spawns
 	//private float faktor = 500f;
 
 	GameObject s;
@@ -46,13 +46,12 @@ public class diagonalMovement : MonoBehaviour
         }
         if (fasterSpawnTime >= 10)
         {
-            spawnSpeed /= 2;
+            spawnSpeed /= 1.2f;
             if(spawnSpeed < fastesSpeed)
             {
                 spawnSpeed = fastesSpeed;
             }
             fasterSpawnTime = 0;
-            Debug.Log("fasterSpawnTime = 0");
         }
         fasterSpawnTime += Time.deltaTime;
 
