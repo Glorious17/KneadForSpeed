@@ -43,7 +43,7 @@ public class Solidity : MonoBehaviour {
                 strength -= failpoints;
                 break;
         }
-        transform.localScale = new Vector3(scale * (strength / 100), 1, 1);
+        transform.localScale = new Vector3(scale * (strength / 100), 1, 0.5f);
 
         // Debug, falls die Skalierung zu groß wird
         if (transform.localScale.x < 0)

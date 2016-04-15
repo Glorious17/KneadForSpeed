@@ -29,6 +29,8 @@ public class Touchscript : MonoBehaviour
 	public GameObject oUL;
 	public GameObject oUR;
 
+    private GameObject lifebar;
+
 	private float abstand = 2.5f;
 
 	public Camera cam;
@@ -40,6 +42,8 @@ public class Touchscript : MonoBehaviour
 		triggerUL = GameObject.Find ("Untenlinks");
 		triggerOR = GameObject.Find ("Obenrechts");
 		triggerOL = GameObject.Find ("Obenlinks");
+
+        lifebar = GameObject.Find("Lifebar");
 	}
 
 	void calculatePoints(float distance)
@@ -48,14 +52,21 @@ public class Touchscript : MonoBehaviour
 
 		if(distance > - 0.2 && distance < 0.2)      //Guter Treffer
 		{
+
+            lifebar.GetComponent<Solidity>().hit(0);
 			Debug.Log("Good Shit");
+
 		}else if(distance < 0.5 && distance > 0.2)  //Mittelmäßiger Treffer
 		{
-			Debug.Log("Meh");
+            lifebar.GetComponent<Solidity>().hit(1);
+
+            Debug.Log("Meh");
 		}
 		else                                        //Kein Treffer
 		{
-			Debug.Log("You suck!");
+            lifebar.GetComponent<Solidity>().hit(2);
+
+            Debug.Log("You suck!");
 		}
 
 
