@@ -5,23 +5,29 @@ using System.Collections.Generic;
 public class Touchscript : MonoBehaviour 
 {
 	float speed = 0.2f;
-	
+
+    //Optimal Points 
+
+    private int optimalPosition = 5;
 	private Vector3 untenrechts = new Vector3(5, 0, - 5);
 	private Vector3 obenrechts = new Vector3(5, 0, 5);
 	private Vector3 untenlinks = new Vector3(-5, 0, -5);
 	private Vector3 obenlinks = new Vector3(-5, 0, 5);
 	
+    //Triggerboxes
 	private GameObject triggerUR;
 	private GameObject triggerUL;
 	private GameObject triggerOR;
 	private GameObject triggerOL;
 
+    //Bolts
 	public GameObject OL;
 	public GameObject OR;
 	public GameObject UL;
 	public GameObject UR;
 	public GameObject center;
 
+    //Startposition Bolts
 	private GameObject oOL;
 	private GameObject oOR;
 	private GameObject oUL;
@@ -50,6 +56,25 @@ public class Touchscript : MonoBehaviour
 		oUL.transform.position = new Vector3(UL.transform.position.x,UL.transform.position.y,UL.transform.position.z);
 		oUR.transform.position = new Vector3(UR.transform.position.x,UR.transform.position.y,UR.transform.position.z);
 	}
+
+    void calculatePoints(float distance)
+    {
+        
+
+        if(distance > - 0.2 && distance < 0.2)      //Guter Treffer
+        {
+            Debug.Log("Good Shit");
+        }else if(distance < 0.5 && distance > 0.2)  //Mittelmäßiger Treffer
+        {
+            Debug.Log("Meh");
+        }
+        else                                        //Kein Treffer
+        {
+            Debug.Log("You suck!");
+        }
+        
+
+    }
 	
 	void Update () 
 	{
@@ -67,10 +92,16 @@ public class Touchscript : MonoBehaviour
 
                     moveTo(UL, center);
                     List<GameObject> signals = triggerUL.GetComponent<TriggerScript>().Signals;
+                    
+                    
                     if (signals.Count > 0)
                     {
                         Vector3 sigPos = signals[0].transform.position;
-                        Debug.Log(untenlinks - sigPos);
+                        float distance = optimalPosition + sigPos.x;
+
+                        Debug.Log(distance);
+                        calculatePoints(distance);
+
                         GameObject go = signals[0];
                         signals.Remove(signals[0]);
                         Destroy(go);
@@ -84,7 +115,13 @@ public class Touchscript : MonoBehaviour
                     if (signals.Count > 0)
                     {
                         Vector3 sigPos = signals[0].transform.position;
-                        Debug.Log(untenrechts - sigPos);
+                        float distance = optimalPosition - sigPos.x;
+
+
+                        Debug.Log(distance);
+                        calculatePoints(distance);
+
+
                         GameObject go = signals[0];
                         signals.Remove(signals[0]);
                         Destroy(go);
@@ -102,7 +139,12 @@ public class Touchscript : MonoBehaviour
                     if (signals.Count > 0)
                     {
                         Vector3 sigPos = signals[0].transform.position;
-                        Debug.Log(obenlinks - sigPos);
+                        float distance = optimalPosition + sigPos.x;
+
+                        Debug.Log(distance);
+                        calculatePoints(distance);
+
+
                         GameObject go = signals[0];
                         signals.Remove(signals[0]);
                         Destroy(go);
@@ -116,7 +158,12 @@ public class Touchscript : MonoBehaviour
                     if (signals.Count > 0)
                     {
                         Vector3 sigPos = signals[0].transform.position;
-                        Debug.Log(obenrechts - sigPos);
+                        float distance = optimalPosition - sigPos.x;
+
+                        Debug.Log(distance);
+                        calculatePoints(distance);
+
+
                         GameObject go = signals[0];
                         signals.Remove(signals[0]);
                         Destroy(go);

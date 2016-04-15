@@ -40,7 +40,7 @@ public class diagonalMovement : MonoBehaviour
             }
             else {
                 spawn();
-                Debug.Log(Time.realtimeSinceStartup);
+                //Debug.Log(Time.realtimeSinceStartup);
                 spawntime = Time.realtimeSinceStartup + spawnSpeed;
             }
         }
