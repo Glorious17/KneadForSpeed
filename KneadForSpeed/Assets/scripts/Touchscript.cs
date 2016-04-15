@@ -33,6 +33,15 @@ public class Touchscript : MonoBehaviour
 
 	public Camera cam;
 
+	void Start()
+	{
+
+		triggerUR = GameObject.Find ("Untenrechts");
+		triggerUL = GameObject.Find ("Untenlinks");
+		triggerOR = GameObject.Find ("Obenrechts");
+		triggerOL = GameObject.Find ("Obenlinks");
+	}
+
 	void calculatePoints(float distance)
 	{
 
