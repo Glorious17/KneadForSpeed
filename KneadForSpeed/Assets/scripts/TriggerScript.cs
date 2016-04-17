@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class TriggerScript : MonoBehaviour {
 
-    List<GameObject> signals = new List<GameObject>();
+    private List<GameObject> signals = new List<GameObject>();
 
-    public List<GameObject> Signals   // Accessor
+    public List<GameObject> Signals   // Accessor mit einem getter
     {
         get
         {
@@ -14,23 +14,20 @@ public class TriggerScript : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerEnter(Collider col) //wenn Signale den Trigger betreten, werden sie der Liste beigefügt
     {
         if(col.gameObject.tag == "Signal")
         {
             signals.Add(col.gameObject);
-            Debug.Log("signalINNNNN!!!");
         }
     }
 
-    void OnTriggerExit(Collider col)
+    void OnTriggerExit(Collider col) //wenn die Signale den Trigger verlassen, werden sie gelöscht und aus der Liste entfernt
     {
         if (col.gameObject.tag == "Signal")
         {
             signals.Remove(col.gameObject);
 			Destroy (col.gameObject);
-
-            Debug.Log("signalOUT!!!");
         }
     }
 
