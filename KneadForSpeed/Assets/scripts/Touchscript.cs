@@ -56,18 +56,19 @@ public class Touchscript : MonoBehaviour
 		{
 
             lifebar.GetComponent<Solidity>().hit(0);
+			GUI.good ();
 			Debug.Log("Good Shit");
 
 		}else if(distance < 0.5 && distance > 0.2)  //Mittelmäßiger Treffer
 		{
             lifebar.GetComponent<Solidity>().hit(1);
-
+			GUI.notGood ();
             Debug.Log("Meh");
 		}
 		else                                        //Kein Treffer
 		{
             lifebar.GetComponent<Solidity>().hit(2);
-
+			GUI.bad ();
             Debug.Log("You suck!");
 		}
 
