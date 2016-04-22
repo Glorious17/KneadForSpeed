@@ -11,17 +11,6 @@ public class Solidity : MonoBehaviour {
 	void Start () {
         scale = gameObject.transform.localScale.x;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown("space"))
-            hit(0);
-        if (Input.GetKeyDown("x"))
-            hit(1);
-        if (Input.GetKeyDown("c"))
-            hit(2);
-
-    }
 
     public void hit(int i) //input 0 = perfekt; 1 = ok; 2 = fail;
     {
@@ -39,6 +28,10 @@ public class Solidity : MonoBehaviour {
                 strength -= failpoints;
                 break;
             case 2:
+                failpoints += 0.5f;
+                strength -= failpoints;
+                break;
+            case 3:
                 failpoints += 1;
                 strength -= failpoints;
                 break;
@@ -49,7 +42,7 @@ public class Solidity : MonoBehaviour {
         if (transform.localScale.x < 0)
             transform.localScale = new Vector3(0, 0, 0);
 
-        Debug.Log("LocalScale: " + transform.localScale.x + " Strength: " + strength);
+      //  Debug.Log("LocalScale: " + transform.localScale.x + " Strength: " + strength);
     }
 
     public float getStrength()
