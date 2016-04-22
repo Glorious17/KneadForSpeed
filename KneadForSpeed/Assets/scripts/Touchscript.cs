@@ -71,6 +71,7 @@ public class Touchscript : MonoBehaviour
 		else if(distance < 1.0 && distance > 0.5)                                        //Kein Treffer
 		{
             lifebar.GetComponent<Solidity>().hit(2);
+            lichtFarbe = 0;
 			//GUI SOUND
             Debug.Log("That was Bad");
         }
@@ -150,7 +151,7 @@ public class Touchscript : MonoBehaviour
 			if (signals.Count > 0) //only when the triggerbox contains at least one signal 
 			{
 				Vector3 sigPos = signals[0].transform.position;
-				float distance = optimalPosition + sigPos.x; //bitte noch mit Kommentar versehen
+				float distance = optimalPosition - Mathf.Abs(sigPos.x); //bitte noch mit Kommentar versehen
 
 				Debug.Log(distance);
 				calculatePoints(distance); //score evaulation

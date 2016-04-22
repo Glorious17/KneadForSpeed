@@ -60,7 +60,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ScoreScript.cs" />
     <Compile Include="Assets\scripts\BolzenRotation.cs" />
     <Compile Include="Assets\scripts\EndSceneGUI.cs" />
     <Compile Include="Assets\scripts\GUI.cs" />
