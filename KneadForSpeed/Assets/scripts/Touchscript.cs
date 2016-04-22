@@ -65,20 +65,20 @@ public class Touchscript : MonoBehaviour
 		{
 			lifebar.GetComponent<Solidity>().hit(1);
 			lichtFarbe = 1;
-			GUI.notGood ();
+			GUI.medium ();
 			Debug.Log("Meh");
 		}
-		else if(distance < 1.0 && distance > 0.5)                                        //Kein Treffer
+		else if(distance < 1.0 && distance > 0.5)   //Kein Treffer
 		{
             lifebar.GetComponent<Solidity>().hit(2);
             lichtFarbe = 0;
-			//GUI SOUND
+            GUI.bad();
             Debug.Log("That was Bad");
         }
         else
         {
             lifebar.GetComponent<Solidity>().hit(2);
-            GUI.bad();
+            GUI.failed();
             Debug.Log("You Suck!");
         }
 

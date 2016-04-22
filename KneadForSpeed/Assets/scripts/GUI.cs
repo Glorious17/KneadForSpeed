@@ -4,12 +4,13 @@ using System.Collections;
 public class GUI : MonoBehaviour {
 
 	public static int score;
-	private static int multiplicity=0;
+	private static int multiplicity=1;
+    private static int combo = 0;
 
 	void OnGUI() {
 		GUILayout.BeginArea(new Rect(Screen.width - 105, 5, 100, 80));
 
-		GUILayout.Label("Multiplikator: "+ multiplicity);
+		GUILayout.Label("Combo: "+ combo);
 		GUILayout.EndArea();
 
 		GUILayout.BeginArea(new Rect(Screen.width -105, 38, 100, 80));
@@ -21,22 +22,31 @@ public class GUI : MonoBehaviour {
 
 	public static void good (){
 
-		multiplicity++;
-		if (score == 0) {
-			score++;
-		}else
-			score= score+multiplicity*score;
+		combo++;
+
+        if(combo%10 == 0)
+        {
+            multiplicity += 1;
+        }
+        score += multiplicity * 4;
 
 	}
 
-	public static void notGood (){
-		if (multiplicity > 0)
-			score = score + multiplicity*score;
-		else
-			score++;
+	public static void medium (){
+
+        combo++;
+        score += multiplicity * 2;
 	}
 
 	public static void bad (){
-		multiplicity = 0;
+
+        combo++;
+        score += multiplicity * 1;
 	}
+
+    public static void failed()
+    {
+        combo = 0;
+        multiplicity = 1;
+    }
 }

@@ -33,6 +33,8 @@ public class TriggerScript : MonoBehaviour {
         if (col.gameObject.tag == "Signal")
         {
             lifebar.GetComponent<Solidity>().hit(3);
+            //GUI.failed();
+
             signals.Remove(col.gameObject);
 			Destroy (col.gameObject);
         }
