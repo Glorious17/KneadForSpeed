@@ -39,6 +39,10 @@ public class Solidity : MonoBehaviour {
                 strength -= failpoints;
                 break;
             case 2:
+                failpoints += 0.5f;
+                strength -= failpoints;
+                break;
+            case 3:
                 failpoints += 1;
                 strength -= failpoints;
                 break;
@@ -49,7 +53,7 @@ public class Solidity : MonoBehaviour {
         if (transform.localScale.x < 0)
             transform.localScale = new Vector3(0, 0, 0);
 
-        Debug.Log("LocalScale: " + transform.localScale.x + " Strength: " + strength);
+      //  Debug.Log("LocalScale: " + transform.localScale.x + " Strength: " + strength);
     }
 
     public float getStrength()

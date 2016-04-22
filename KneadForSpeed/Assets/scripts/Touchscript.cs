@@ -7,11 +7,6 @@ public class Touchscript : MonoBehaviour
 	float speed = 0.2f;
 
 	private int optimalPosition = 5; // ? 
-
-	private Vector3 untenrechts = new Vector3(5, 0, - 5); //Positionen der Zielpunkte (zur Evaluierung des Scores)
-	private Vector3 obenrechts = new Vector3(5, 0, 5);
-	private Vector3 untenlinks = new Vector3(-5, 0, -5);
-	private Vector3 obenlinks = new Vector3(-5, 0, 5);
 	
 	private GameObject triggerUR; //Triggerboxen
 	private GameObject triggerUL;
@@ -40,10 +35,12 @@ public class Touchscript : MonoBehaviour
     void Start()
 	{
         signals = new List<GameObject>();
-		triggerUR = GameObject.Find ("Untenrechts");
-		triggerUL = GameObject.Find ("Untenlinks");
-		triggerOR = GameObject.Find ("Obenrechts");
-		triggerOL = GameObject.Find ("Obenlinks");
+
+        triggerUR = GameObject.Find("Untenrechts");
+        triggerUL = GameObject.Find("Untenlinks");
+        triggerOR = GameObject.Find("Obenrechts");
+        triggerOL = GameObject.Find("Obenlinks");
+
 
         lifebar = GameObject.Find("Lifebar");
 	}
@@ -65,12 +62,18 @@ public class Touchscript : MonoBehaviour
 			GUI.notGood ();
             Debug.Log("Meh");
 		}
-		else                                        //Kein Treffer
+		else if(distance < 1.0 && distance > 0.5)                                        //Kein Treffer
 		{
             lifebar.GetComponent<Solidity>().hit(2);
-			GUI.bad ();
-            Debug.Log("You suck!");
-		}
+			//GUI SOUND
+            Debug.Log("That was Bad");
+        }
+        else
+        {
+            lifebar.GetComponent<Solidity>().hit(2);
+            GUI.bad();
+            Debug.Log("You Suck!");
+        }
 
 
 	}
@@ -119,7 +122,7 @@ public class Touchscript : MonoBehaviour
             if (signals.Count > 0) //only when the triggerbox contains at least one signal 
             {
                 Vector3 sigPos = signals[0].transform.position;
-                float distance = optimalPosition + sigPos.x; //bitte noch mit Kommentar versehen
+                float distance = optimalPosition - Mathf.Abs(sigPos.x); //bitte noch mit Kommentar versehen
 
                 Debug.Log(distance);
                 calculatePoints(distance); //score evaulation

@@ -5,6 +5,12 @@ using System.Collections.Generic;
 public class TriggerScript : MonoBehaviour {
 
     private List<GameObject> signals = new List<GameObject>();
+    private GameObject lifebar;
+
+    void Start()
+    {
+        lifebar = GameObject.Find("Lifebar");
+    }
 
     public List<GameObject> Signals   // Accessor mit einem getter
     {
@@ -26,6 +32,7 @@ public class TriggerScript : MonoBehaviour {
     {
         if (col.gameObject.tag == "Signal")
         {
+            lifebar.GetComponent<Solidity>().hit(3);
             signals.Remove(col.gameObject);
 			Destroy (col.gameObject);
         }
