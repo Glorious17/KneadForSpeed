@@ -4,7 +4,8 @@ using System.Collections;
 public class GUI : MonoBehaviour {
 
 	public static int score;
-	private static int multiplicity=0;
+	private static int hits = 0;
+	private static int multiplicity = 0;
 
 	void OnGUI() {
 		GUILayout.BeginArea(new Rect(Screen.width - 105, 5, 100, 80));
@@ -20,23 +21,19 @@ public class GUI : MonoBehaviour {
 	}
 
 	public static void good (){
-
-		multiplicity++;
-		if (score == 0) {
-			score++;
-		}else
-			score= score+multiplicity*score;
-
+		
+		hits++;
+		if (hits % 3 == 0)
+			multiplicity++;
+		score += multiplicity;
 	}
 
 	public static void notGood (){
-		if (multiplicity > 0)
-			score = score + multiplicity*score;
-		else
-			score++;
+		score += multiplicity;
 	}
 
 	public static void bad (){
-		multiplicity = 0;
+		multiplicity = 1;
+		hits = 0;
 	}
 }
