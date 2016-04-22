@@ -1,0 +1,15 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Touchscript.cs">
+    <Files>
+      <File FileName="Assets\scripts\Touchscript.cs" Line="44" Column="2" />
+      <File FileName="..\..\asdf\KneadForSpeed\KneadForSpeed\Assets\scripts\Touchscript.cs" Line="46" Column="44" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Acer Tab\Desktop\KneadForSpeed\KneadForSpeed\Assets\scripts\Lights.cs" line="58" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
