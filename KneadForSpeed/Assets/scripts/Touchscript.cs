@@ -187,21 +187,21 @@ public class Touchscript : MonoBehaviour
 						//oben links
                         moveTo(triggerOL.GetComponent<TriggerScript>().getCurrentBolzen());
 						signals = triggerOL.GetComponent<TriggerScript>().Signals;
-						lichtPos = 1;
+						lichtPos = 2;
 					}
 					//oben rechts
-					if (mytouches[i].position.x > Screen.width / 2) 
+					if (mytouches[i].position.x > Screen.width / 2 && mytouches [i].position.y > Screen.height / 2) 
 					{
                         moveTo(triggerOR.GetComponent<TriggerScript>().getCurrentBolzen());
 						signals = triggerOR.GetComponent<TriggerScript>().Signals;
-						lichtPos = 2;
+						lichtPos = 0;
 					}
 					//unten rechts
-					if (mytouches[i].position.x > Screen.width / 2)
+					if (mytouches[i].position.x > Screen.width / 2 && mytouches [i].position.y <= Screen.height / 2)
 					{
                         moveTo(triggerUR.GetComponent<TriggerScript>().getCurrentBolzen());
 						signals = triggerUR.GetComponent<TriggerScript>().Signals;
-						lichtPos = 0;
+						lichtPos = 1;
 					}
 
 					if (signals.Count > 0) //only when the triggerbox contains at least one signal 
@@ -218,9 +218,10 @@ public class Touchscript : MonoBehaviour
 					}
 				}
 			}
+			lightOn ();
 		}
 
-		lightOn ();
+		lightOn (); //Nur für die Maus
 	}
 
 
