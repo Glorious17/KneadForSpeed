@@ -36,8 +36,17 @@ public class Touchscript : MonoBehaviour
 	public Camera cam;
 
 	private List<GameObject> signals; //storage for signals on the field
+    private static List<int> feedback = new List<int>();
 
-	void Start()
+    public List<int> Feedback   // Accessor mit einem getter
+    {
+        get
+        {
+            return feedback;
+        }
+    }
+
+    void Start()
 	{
 		signals = new List<GameObject>();
 		triggerUR = GameObject.Find ("Untenrechts");
@@ -57,6 +66,7 @@ public class Touchscript : MonoBehaviour
 		if(distance > - 0.2 && distance < 0.2)      //Guter Treffer
 		{
 			lifebar.GetComponent<Solidity>().hit(0);
+            feedback.Add(1);
 			lichtFarbe = 2;
 			GUI.good ();
 			Debug.Log("Good Shit");
@@ -64,13 +74,15 @@ public class Touchscript : MonoBehaviour
 		}else if(distance < 0.5 && distance > 0.2)  //Mittelmäßiger Treffer
 		{
 			lifebar.GetComponent<Solidity>().hit(1);
-			lichtFarbe = 1;
+            feedback.Add(2);
+            lichtFarbe = 1;
 			GUI.medium ();
 			Debug.Log("Meh");
 		}
 		else if(distance < 1.0 && distance > 0.5)   //Kein Treffer
 		{
             lifebar.GetComponent<Solidity>().hit(2);
+            feedback.Add(3);
             lichtFarbe = 0;
             GUI.bad();
             Debug.Log("That was Bad");
@@ -78,6 +90,7 @@ public class Touchscript : MonoBehaviour
         else
         {
             lifebar.GetComponent<Solidity>().hit(2);
+            feedback.Add(4);
             GUI.failed();
             Debug.Log("You Suck!");
         }
