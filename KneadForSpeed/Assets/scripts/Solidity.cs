@@ -11,17 +11,6 @@ public class Solidity : MonoBehaviour {
 	void Start () {
         scale = gameObject.transform.localScale.x;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown("space"))
-            hit(0);
-        if (Input.GetKeyDown("x"))
-            hit(1);
-        if (Input.GetKeyDown("c"))
-            hit(2);
-
-    }
 
     public void hit(int i) //input 0 = perfekt; 1 = ok; 2 = fail;
     {
