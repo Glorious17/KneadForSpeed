@@ -82,3 +82,6 @@ C:\Users\Acer Tab\Desktop\KneadForSpeed\KneadForSpeed\Temp\bin\Debug\UnityEditor
 C:\Users\Acer Tab\Desktop\KneadForSpeed\KneadForSpeed\Temp\bin\Debug\UnityEngine.UI.xml
 C:\Users\Acer Tab\Desktop\KneadForSpeed\KneadForSpeed\Temp\bin\Debug\UnityEngine.Networking.xml
 C:\Users\Acer Tab\Desktop\KneadForSpeed\KneadForSpeed\obj\Debug\Assembly-CSharp.pdb
+C:\Users\nonon\Desktop\KneadForSpeed2\KneadForSpeed\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+C:\Users\nonon\Desktop\KneadForSpeed2\KneadForSpeed\obj\Debug\Assembly-CSharp.dll
+C:\Users\nonon\Desktop\KneadForSpeed2\KneadForSpeed\obj\Debug\Assembly-CSharp.pdb
