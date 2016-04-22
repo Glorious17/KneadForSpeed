@@ -8,11 +8,6 @@ public class Touchscript : MonoBehaviour
 
 	private int optimalPosition = 5; // ? 
 
-	private Vector3 untenrechts = new Vector3(5, 0, - 5); //Positionen der Zielpunkte (zur Evaluierung des Scores)
-	private Vector3 obenrechts = new Vector3(5, 0, 5);
-	private Vector3 untenlinks = new Vector3(-5, 0, -5);
-	private Vector3 obenlinks = new Vector3(-5, 0, 5);
-	
 	private GameObject triggerUR; //Triggerboxen
 	private GameObject triggerUL;
 	private GameObject triggerOR;
@@ -29,49 +24,84 @@ public class Touchscript : MonoBehaviour
 	public GameObject oUL;
 	public GameObject oUR;
 
-    private GameObject lifebar;
+	private GameObject lifebar;
 
 	private float abstand = 2.5f;
 
+	private int ausLicht = 5;
+	private int lichtPos;
+	private int lichtFarbe;
+	private GameObject Licht;
+
 	public Camera cam;
 
-    private List<GameObject> signals; //storage for signals on the field
+	private List<GameObject> signals; //storage for signals on the field
 
-    void Start()
+	void Start()
 	{
-        signals = new List<GameObject>();
+		signals = new List<GameObject>();
 		triggerUR = GameObject.Find ("Untenrechts");
 		triggerUL = GameObject.Find ("Untenlinks");
 		triggerOR = GameObject.Find ("Obenrechts");
 		triggerOL = GameObject.Find ("Obenlinks");
 
-        lifebar = GameObject.Find("Lifebar");
+		lifebar = GameObject.Find("Lifebar");
+
+		lichtPos = ausLicht;
+		lichtFarbe = ausLicht;
+		Licht = GameObject.Find ("Lights");
 	}
 
 	void calculatePoints(float distance)
 	{
-
-
 		if(distance > - 0.2 && distance < 0.2)      //Guter Treffer
 		{
-
-            lifebar.GetComponent<Solidity>().hit(0);
+			lifebar.GetComponent<Solidity>().hit(0);
+			lichtFarbe = 2;
+			GUI.good ();
 			Debug.Log("Good Shit");
 
 		}else if(distance < 0.5 && distance > 0.2)  //Mittelmäßiger Treffer
 		{
-            lifebar.GetComponent<Solidity>().hit(1);
-
-            Debug.Log("Meh");
+			lifebar.GetComponent<Solidity>().hit(1);
+			lichtFarbe = 1;
+			GUI.notGood ();
+			Debug.Log("Meh");
 		}
-		else                                        //Kein Treffer
+		else if(distance < 1.0 && distance > 0.5)                                        //Kein Treffer
 		{
             lifebar.GetComponent<Solidity>().hit(2);
+            lichtFarbe = 0;
+			//GUI SOUND
+            Debug.Log("That was Bad");
+        }
+        else
+        {
+            lifebar.GetComponent<Solidity>().hit(2);
+            GUI.bad();
+            Debug.Log("You Suck!");
+        }
 
-            Debug.Log("You suck!");
+
+	}
+
+	void lightOn()
+	{
+		switch(lichtFarbe)
+		{
+		case 0: 
+			Licht.GetComponent<Lights>().red [lichtPos] = true;
+			break;
+		case 1:
+			Licht.GetComponent<Lights>().yellow [lichtPos] = true;
+			break;
+		case 2:
+			Licht.GetComponent<Lights>().green [lichtPos] = true;
+			break;
 		}
 
-
+		lichtFarbe = ausLicht;
+		lichtPos = ausLicht;
 	}
 
 	void Update () 
@@ -89,13 +119,15 @@ public class Touchscript : MonoBehaviour
 				{
                     moveTo(triggerUL.GetComponent<TriggerScript>().getCurrentBolzen()); //moving the Backe to the Center
                     signals = triggerUL.GetComponent<TriggerScript>().Signals;
-                }
+					lichtPos = 3;
+				}
 				//unten rechts
 				if (Input.mousePosition.x > Screen.width / 2)
 				{
                     moveTo(triggerUR.GetComponent<TriggerScript>().getCurrentBolzen());
                     signals = triggerUR.GetComponent<TriggerScript>().Signals;
-                }
+					lichtPos = 1;
+				}
 			}
 
 			if (Input.mousePosition.y > Screen.height / 2)
@@ -105,86 +137,90 @@ public class Touchscript : MonoBehaviour
 				{
                     moveTo(triggerOL.GetComponent<TriggerScript>().getCurrentBolzen());
                     signals = triggerOL.GetComponent<TriggerScript>().Signals;
-                }
+					lichtPos = 2;
+				}
 				//oben rechts
 				if (Input.mousePosition.x > Screen.width / 2)
 				{
-					moveTo(triggerOR.GetComponent<TriggerScript>().getCurrentBolzen());
+                    moveTo(triggerOR.GetComponent<TriggerScript>().getCurrentBolzen());
                     signals = triggerOR.GetComponent<TriggerScript>().Signals;
-                }
-
+					lichtPos = 0;
+				}
 			}
-                      
-            if (signals.Count > 0) //only when the triggerbox contains at least one signal 
-            {
-                Vector3 sigPos = signals[0].transform.position;
-                float distance = optimalPosition + sigPos.x; //bitte noch mit Kommentar versehen
 
-                Debug.Log(distance);
-                calculatePoints(distance); //score evaulation
+			if (signals.Count > 0) //only when the triggerbox contains at least one signal 
+			{
+				Vector3 sigPos = signals[0].transform.position;
+				float distance = optimalPosition - Mathf.Abs(sigPos.x); //bitte noch mit Kommentar versehen
 
-                GameObject go = signals[0]; //first signal which entered the trigger box is looked at
-                signals.Remove(signals[0]); //removing Object from List
-                Destroy(go); //deleting Object from scene
-            }
-        }
+				Debug.Log(distance);
+				calculatePoints(distance); //score evaulation
+
+				GameObject go = signals[0]; //first signal which entered the trigger box is looked at
+				signals.Remove(signals[0]); //removing Object from List
+				Destroy(go); //deleting Object from scene
+			}
+		}
 
 
 		//Touch Positioning
 		if (Input.touchCount > 0)
 		{
-
 			//Touch mytouch = Input.GetTouch (0);
 
 			Touch[] mytouches = Input.touches;
 
 			for(int i = 0; i < Input.touchCount; i++)
 			{
-				if (mytouches[i].phase == TouchPhase.Began) {
+				if (mytouches[i].phase == TouchPhase.Began) 
+				{
 
-					if (mytouches[i].position.y <= Screen.height / 2) {
+					if (mytouches[i].position.y <= Screen.height / 2 && mytouches[i].position.x <= Screen.width / 2) 
+					{
 						//unten links
-						if (mytouches[i].position.x <= Screen.width / 2) 
-						{
-							moveTo(UL);//moving the Backe to the Center 
-                            signals = triggerUL.GetComponent<TriggerScript>().Signals;
-                        }
-
+                        moveTo(triggerUL.GetComponent<TriggerScript>().getCurrentBolzen());//moving the Backe to the Center 
+                        signals = triggerUL.GetComponent<TriggerScript>().Signals;
+						lichtPos = 3;
 					}
-					if (mytouches [i].position.y > Screen.height / 2) {
+					if (mytouches [i].position.y > Screen.height / 2 && mytouches [i].position.x <= Screen.width / 2) 
+					{
 						//oben links
-						if (mytouches [i].position.x <= Screen.width / 2) {
-                            moveTo(triggerOL.GetComponent<TriggerScript>().getCurrentBolzen());
-                            signals = triggerOL.GetComponent<TriggerScript>().Signals;
-                        }
+                        moveTo(triggerOL.GetComponent<TriggerScript>().getCurrentBolzen());
+						signals = triggerOL.GetComponent<TriggerScript>().Signals;
+						lichtPos = 1;
 					}
 					//oben rechts
-					if (mytouches[i].position.x > Screen.width / 2) {
+					if (mytouches[i].position.x > Screen.width / 2) 
+					{
                         moveTo(triggerOR.GetComponent<TriggerScript>().getCurrentBolzen());
-                        signals = triggerOR.GetComponent<TriggerScript>().Signals;
-                    }
+						signals = triggerOR.GetComponent<TriggerScript>().Signals;
+						lichtPos = 2;
+					}
 					//unten rechts
 					if (mytouches[i].position.x > Screen.width / 2)
 					{
                         moveTo(triggerUR.GetComponent<TriggerScript>().getCurrentBolzen());
-                        signals = triggerUR.GetComponent<TriggerScript>().Signals;
-                    }
+						signals = triggerUR.GetComponent<TriggerScript>().Signals;
+						lichtPos = 0;
+					}
 
-                    if (signals.Count > 0) //only when the triggerbox contains at least one signal 
-                    {
-                        Vector3 sigPos = signals[0].transform.position;
-                        float distance = optimalPosition + sigPos.x; //bitte noch mit Kommentar versehen
+					if (signals.Count > 0) //only when the triggerbox contains at least one signal 
+					{
+						Vector3 sigPos = signals[0].transform.position;
+						float distance = optimalPosition + sigPos.x; //bitte noch mit Kommentar versehen
 
-                        Debug.Log(distance);
-                        calculatePoints(distance); //score evaulation
+						Debug.Log(distance);
+						calculatePoints(distance); //score evaulation
 
-                        GameObject go = signals[0]; //first signal which entered the trigger box is looked at
-                        signals.Remove(signals[0]); //removing Object from List
-                        Destroy(go); //deleting Object from scene
-                    }
-                }
+						GameObject go = signals[0]; //first signal which entered the trigger box is looked at
+						signals.Remove(signals[0]); //removing Object from List
+						Destroy(go); //deleting Object from scene
+					}
+				}
 			}
 		}
+
+		lightOn ();
 	}
 
 
