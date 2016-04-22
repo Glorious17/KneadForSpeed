@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class TriggerScript : MonoBehaviour {
 
     private List<GameObject> signals = new List<GameObject>();
+    private GameObject currentBolzen;
 
     public List<GameObject> Signals   // Accessor mit einem getter
     {
@@ -17,9 +18,11 @@ public class TriggerScript : MonoBehaviour {
     void OnTriggerEnter(Collider col) //wenn Signale den Trigger betreten, werden sie der Liste beigefügt
     {
         if(col.gameObject.tag == "Signal")
-        {
             signals.Add(col.gameObject);
-        }
+
+        if (col.gameObject.tag == "Bolzen")
+            if (col.gameObject.tag == "Bolzen")
+                currentBolzen = col.gameObject;
     }
 
     void OnTriggerExit(Collider col) //wenn die Signale den Trigger verlassen, werden sie gelöscht und aus der Liste entfernt
@@ -31,4 +34,8 @@ public class TriggerScript : MonoBehaviour {
         }
     }
 
+    public GameObject getCurrentBolzen()
+    {
+        return currentBolzen;
+    }
 }

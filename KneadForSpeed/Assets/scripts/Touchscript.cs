@@ -87,13 +87,13 @@ public class Touchscript : MonoBehaviour
 				//unten links
 				if (Input.mousePosition.x <= Screen.width / 2)
 				{
-					moveTo(UL, center); //moving the Backe to the Center
+                    moveTo(triggerUL.GetComponent<TriggerScript>().getCurrentBolzen()); //moving the Backe to the Center
                     signals = triggerUL.GetComponent<TriggerScript>().Signals;
                 }
 				//unten rechts
 				if (Input.mousePosition.x > Screen.width / 2)
 				{
-					moveTo(UR, center);
+                    moveTo(triggerUR.GetComponent<TriggerScript>().getCurrentBolzen());
                     signals = triggerUR.GetComponent<TriggerScript>().Signals;
                 }
 			}
@@ -103,13 +103,13 @@ public class Touchscript : MonoBehaviour
 				//oben links
 				if (Input.mousePosition.x <= Screen.width / 2)
 				{
-					moveTo(OL, center);
+                    moveTo(triggerOL.GetComponent<TriggerScript>().getCurrentBolzen());
                     signals = triggerOL.GetComponent<TriggerScript>().Signals;
                 }
 				//oben rechts
 				if (Input.mousePosition.x > Screen.width / 2)
 				{
-					moveTo(OR, center);
+					moveTo(triggerOR.GetComponent<TriggerScript>().getCurrentBolzen());
                     signals = triggerOR.GetComponent<TriggerScript>().Signals;
                 }
 
@@ -131,7 +131,6 @@ public class Touchscript : MonoBehaviour
 
 
 		//Touch Positioning
-
 		if (Input.touchCount > 0)
 		{
 
@@ -147,7 +146,7 @@ public class Touchscript : MonoBehaviour
 						//unten links
 						if (mytouches[i].position.x <= Screen.width / 2) 
 						{
-							moveTo(UL, center);//moving the Backe to the Center 
+							moveTo(UL);//moving the Backe to the Center 
                             signals = triggerUL.GetComponent<TriggerScript>().Signals;
                         }
 
@@ -155,19 +154,19 @@ public class Touchscript : MonoBehaviour
 					if (mytouches [i].position.y > Screen.height / 2) {
 						//oben links
 						if (mytouches [i].position.x <= Screen.width / 2) {
-							moveTo (OL, center);
+                            moveTo(triggerOL.GetComponent<TriggerScript>().getCurrentBolzen());
                             signals = triggerOL.GetComponent<TriggerScript>().Signals;
                         }
 					}
 					//oben rechts
 					if (mytouches[i].position.x > Screen.width / 2) {
-						moveTo(OR, center);
+                        moveTo(triggerOR.GetComponent<TriggerScript>().getCurrentBolzen());
                         signals = triggerOR.GetComponent<TriggerScript>().Signals;
                     }
 					//unten rechts
 					if (mytouches[i].position.x > Screen.width / 2)
 					{
-						moveTo(UR, center);
+                        moveTo(triggerUR.GetComponent<TriggerScript>().getCurrentBolzen());
                         signals = triggerUR.GetComponent<TriggerScript>().Signals;
                     }
 
@@ -186,15 +185,15 @@ public class Touchscript : MonoBehaviour
                 }
 			}
 		}
-	}		
+	}
 
 
-	void moveTo(GameObject current, GameObject target)
+	public void moveTo(GameObject current)
 	{
-		while(current.transform.position != target.transform.position && 
-			Vector3.Distance(current.transform.position, target.transform.position) > abstand)
+		while(current.transform.position != center.transform.position && 
+			Vector3.Distance(current.transform.position, center.transform.position) > abstand)
 		{
-			current.transform.position = Vector3.MoveTowards (current.transform.position, target.transform.position, speed);
+			current.transform.position = Vector3.MoveTowards (current.transform.position, center.transform.position, speed);
 		}
 	}
 
