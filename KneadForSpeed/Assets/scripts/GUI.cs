@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GUI : MonoBehaviour {
 
-	public static int score;
+	public static double score;
 	private static int multiplicity=1;
     private static int combo = 0;
 
@@ -28,20 +28,20 @@ public class GUI : MonoBehaviour {
         {
             multiplicity += 1;
         }
-        score += multiplicity * 4;
+        score += multiplicity * 300;
 
 	}
 
 	public static void medium (){
 
         combo++;
-        score += multiplicity * 2;
+        score += multiplicity * 100;
 	}
 
 	public static void bad (){
 
         combo++;
-        score += multiplicity * 1;
+        score += multiplicity * 50;
 	}
 
     public static void failed()

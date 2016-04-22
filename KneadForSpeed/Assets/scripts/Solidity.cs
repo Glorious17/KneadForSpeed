@@ -4,7 +4,7 @@ using System.Collections;
 public class Solidity : MonoBehaviour {
 
     private float strength = 100;
-    private float failpoints;
+    private float goodHitCombo = 0;
     private float scale;
 
 	// Use this for initialization
@@ -12,28 +12,37 @@ public class Solidity : MonoBehaviour {
         scale = gameObject.transform.localScale.x;
     }
 
-    public void hit(int i) //input 0 = perfekt; 1 = ok; 2 = fail;
+    public void hit(int i) //input 0 = perfekt; 1 = ok; 2 = fail; 
     {
         switch (i)
         {
             case 0:
-                failpoints = 0;
-                strength += 5;
 
-                if (strength > 100)
-                    strength = 100;
-                break;
+             
+                if (goodHitCombo == 3 && strength!= 100)
+                {
+                    strength += 20;
+                    goodHitCombo = 0;
+                }
+                else
+                {
+                    goodHitCombo++;
+                }
+                    break;
             case 1:
-                failpoints += 0.2f;
-                strength -= failpoints;
+                
+                strength -= 0;
+                goodHitCombo = 0;
                 break;
             case 2:
-                failpoints += 0.5f;
-                strength -= failpoints;
+                
+                strength -= 20;
+                goodHitCombo = 0;
                 break;
             case 3:
-                failpoints += 1;
-                strength -= failpoints;
+                
+                strength -= 20;
+                goodHitCombo = 0;
                 break;
         }
         transform.localScale = new Vector3(scale * (strength / 100), 1, 0.5f);
