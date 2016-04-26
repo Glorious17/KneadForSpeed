@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class EndSceneGUI : MonoBehaviour {
 
-    private static List<int> wire = new List<int>();
+    private List<int> wire = new List<int>();
 
     public GameObject wire_thin, wire_medium, wire_thick, wire_fat;
 

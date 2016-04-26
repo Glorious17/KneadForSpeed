@@ -48,13 +48,16 @@ public class Solidity : MonoBehaviour {
         transform.localScale = new Vector3(scale * (strength / 100), 1, 0.5f);
 
         // Debug, falls die Skalierung zu groß wird
-        if (transform.localScale.x < 0)
-            transform.localScale = new Vector3(0, 0, 0);
+        if (transform.localScale.x < 0) //wenn die Skalierung der Lebensleiste gen 0 geht
+        {
+            transform.localScale = new Vector3(0, 0, 0); 
+            Application.LoadLevel(3); //Laden des Gameover Screens
+        }
 
       //  Debug.Log("LocalScale: " + transform.localScale.x + " Strength: " + strength);
     }
 
-    public float getStrength()
+    public float getStrength() //besseres C# -> Accessor schreiben mit einem getter
     {
         return strength;
     }

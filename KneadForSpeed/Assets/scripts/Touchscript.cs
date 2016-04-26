@@ -36,9 +36,10 @@ public class Touchscript : MonoBehaviour
 	public Camera cam;
 
 	private List<GameObject> signals; //storage for signals on the field
-    private static List<int> feedback = new List<int>();
+    private static List<int> feedback = new List<int>(); //statisch, da das Skript auch in der Main Camera von der EndScene geladen wird und somit diese Liste erhalten bleibt
+    //speichert Feedback werte ab
 
-    public List<int> Feedback   // Accessor mit einem getter
+    public List<int> Feedback //Accessor for the feedback List
     {
         get
         {
