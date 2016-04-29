@@ -7,9 +7,12 @@ public class TriggerScript : MonoBehaviour {
     private List<GameObject> signals = new List<GameObject>();
     private GameObject currentBolzen;
     private GameObject lifebar;
+	private GameObject Licht;
+	public int id;
 
     void Start()
     {
+		Licht = GameObject.Find ("Lights");
         lifebar = GameObject.Find("Lifebar");
     }
 
@@ -40,6 +43,8 @@ public class TriggerScript : MonoBehaviour {
 
             signals.Remove(col.gameObject);
 			Destroy (col.gameObject);
+
+			Licht.GetComponent<Lights>().red [id] = true;
         }
     }
 
