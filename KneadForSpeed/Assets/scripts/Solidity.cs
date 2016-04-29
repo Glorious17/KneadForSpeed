@@ -51,7 +51,7 @@ public class Solidity : MonoBehaviour {
         if (transform.localScale.x <= 0) //wenn die Skalierung der Lebensleiste gen 0 geht
         {
             transform.localScale = new Vector3(0, 0, 0); 
-            //Application.LoadLevel(3); //Laden des Gameover Screens
+            Application.LoadLevel(3); //Laden des Gameover Screens
         }
 
       //  Debug.Log("LocalScale: " + transform.localScale.x + " Strength: " + strength);

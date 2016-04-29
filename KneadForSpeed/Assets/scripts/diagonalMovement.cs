@@ -8,21 +8,23 @@ public class diagonalMovement : MonoBehaviour
 
 	private float movementX = 3f;
 	private float movementZ = 3f;
+
+    //Das "movement" eines Patterns darf nicht zufällig geschehen. Sonst macht es keinen Sinn, Freunde. :/
     private float patternMovementX = 3f;
     private float patternMovementZ = 3f;
 
     private double randomSpawn = 100;
     private float zweiSpawnHaeufigkeit = 25f;
-    private int randomPattern;
-    private int randomizer;
-    private float patternTime = 4;
-    private int patternCounter = 0;
+    private int randomPattern; //Diese Variable wird später zufällig bestimmt und entscheidet welches "Special-Pattern" abgespielt wird
+    private int randomizer; //Eine Zufallsvariable die nach jedem normalen "Spawn" neu bestimmt wird. Die Variable hat Einfluss auf alle "Special-Pattern"
+    private float patternTime = 4; //Diese Variable sorgt dafür, dass ein "Special-Pattern" nicht innerhalb der ersten 20 Frames abgespielt wird.
+    private int patternCounter = 0; //Eine Variable die mitzählt, wie viele Spawns, während eines "Special-Pattern", bereits abgespielt wurden. 
     private bool zweiterSpawn = false;
     private bool specialPattern = false;
     private float spawntime = 3f;
     private float spawnSpeed = 5f;
     private float fasterSpawnTime = 0;
-    private float fastesSpeed = 0.4f; //Umso kleiner diese Zahl ist, umso schneller ist die maximale Geschwindigkeit der Spawns
+    private float fastesSpeed = 0.6f; //Umso kleiner diese Zahl ist, umso schneller ist die maximale Geschwindigkeit der Spawns
 	//private float faktor = 500f;
 
 	GameObject s;
@@ -52,21 +54,20 @@ public class diagonalMovement : MonoBehaviour
                     Debug.Log(Time.realtimeSinceStartup);
                     spawntime = Time.realtimeSinceStartup + spawnSpeed;
                 }
-                if (Random.Range(0, 100) < 10)
+                if (Random.Range(0, 100) % 20 == 0)
                     specialPattern = true;
             }
             randomizer = Random.Range(0, 1001);
         }
         else
         {
-            if(patternCounter == 0)
-                randomPattern = Random.Range(0, 2);
+            if (patternCounter == 0)
+                randomPattern = Random.Range(0, 3);
 
             if (Time.realtimeSinceStartup >= patternTime)
             {
                 pattern();
-                patternTime = Time.realtimeSinceStartup;
-                patternTime += 0.4f;
+                patternTime = Time.realtimeSinceStartup + 0.4f;
             }
             
         }
@@ -95,10 +96,10 @@ public class diagonalMovement : MonoBehaviour
 		s.GetComponent<Rigidbody> ().AddForce (new Vector3 (movementX, 0, movementZ), ForceMode.Impulse);
 	}
 
-    void petternSpawn()
+    void petternSpawn() //Der Spawn für ein "Special-Pattern"
     {
         s = Instantiate(signal);
-        s.GetComponent<Rigidbody>().AddForce(new Vector3(movementX, 0, movementZ), ForceMode.Impulse);
+        s.GetComponent<Rigidbody>().AddForce(new Vector3(patternMovementX, 0, patternMovementZ), ForceMode.Impulse);
     }
 
 	void randPos()
@@ -139,7 +140,7 @@ public class diagonalMovement : MonoBehaviour
 			break;*/
 	}
 
-    void pattern()
+    void pattern() //Anhand der zuvor zufällig bestimmten Variable "randomPattern" wird das entsprechende "Special-Pettern" bestimmt.
     {
         switch (randomPattern)
         {
@@ -147,7 +148,10 @@ public class diagonalMovement : MonoBehaviour
                 patternCircle();
                 break;
             case 1:
-                petternMultiSpawn();
+                patternMultiSpawn();
+                break;
+            case 2:
+                patternMultiSwitchSpawn();
                 break;
         }
         if (patternCounter >= 20)
@@ -157,43 +161,86 @@ public class diagonalMovement : MonoBehaviour
         }
     }
 
-    void petternMultiSpawn()
+    void patternMultiSwitchSpawn() //20 Spawns werden in eine zufällige Richtung ausgeführt. Jeder 5. Spawn wird auf der gegenüberliegenden Seite ausgeführt.
     {
         if (randomizer < 250)
         {
-            movementX *= 1;
-            movementZ *= 1;
+            patternMovementX = movementX;
+            patternMovementZ = movementZ;
         }
         else if (randomizer < 500)
         {
-            movementX *= -1;
-            movementZ *= 1;
+            patternMovementX = movementX * -1;
+            patternMovementZ = movementZ;
         }
         else if (randomizer < 750)
         {
-            movementX *= -1;
-            movementZ *= -1;
+            patternMovementX = movementX * -1;
+            patternMovementZ = movementZ * -1;
         }
         else if (randomizer < 1000)
         {
-            movementX *= 1;
-            movementZ *= -1;
+            patternMovementX = movementX;
+            patternMovementZ = movementZ * -1;
         }
+
+        if (patternCounter % 5 == 0)
+            if (patternCounter % 10 == 0)
+            {
+                patternMovementX *= -1;
+                patternMovementZ *= -1;
+            }
+            else
+                patternMovementX *= -1;
+
         patternCounter++;
         petternSpawn();
     }
 
-    void patternCircle()
+    void patternMultiSpawn() //20 Spawns werden in eine zufällige Richtung ausgeführt.
     {
-        if (patternCounter%2==0)
-            patternMovementX *= -1;
+        if(patternCounter == 0)
+            if (randomizer < 250)
+            {
+                patternMovementX = movementX;
+                patternMovementZ = movementZ;
+            }
+            else if (randomizer < 500)
+            {
+                patternMovementX =  movementX * -1;
+                patternMovementZ = movementZ;
+            }
+            else if (randomizer < 750)
+            {
+                patternMovementX = movementX * -1;
+                patternMovementZ = movementZ * -1;
+            }
+            else if (randomizer < 1000)
+            {
+                patternMovementX = movementX;
+                patternMovementZ = movementZ * -1;
+            }
+        patternCounter++;
+        petternSpawn();
+    }
+
+    void patternCircle() //20 Spawns werden rotierend ausgeführt.
+    {
+        if (randomizer < 500)
+            if (patternCounter % 2 == 0)
+                patternMovementX *= -1;
+            else
+                patternMovementZ *= -1;
         else
-            patternMovementZ *= -1;
+            if (patternCounter % 2 == 0)
+                patternMovementZ *= -1;
+            else
+                patternMovementX *= -1;
+
 
         movementX = patternMovementX;
         movementZ = patternMovementZ;
         patternCounter++;
-        Debug.Log(patternCounter);
         petternSpawn();
     }
 }
