@@ -91,7 +91,7 @@ public class Touchscript : MonoBehaviour
         else
         {
             lifebar.GetComponent<Solidity>().hit(3);
-            feedback.Add(4);
+            feedback.Add(3);
 			lichtFarbe = 3;
             GUI.failed();
             Debug.Log("You Suck!");

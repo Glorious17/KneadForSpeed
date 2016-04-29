@@ -6,7 +6,7 @@ public class EndSceneGUI : MonoBehaviour {
 
     private List<int> wire = new List<int>();
 
-    public GameObject wire_thin, wire_medium, wire_thick, wire_fat;
+    public GameObject wire_thin, wire_medium, wire_thick, wire_fat, invisible;
 
 
     // Use this for initialization
@@ -31,22 +31,27 @@ public class EndSceneGUI : MonoBehaviour {
     public void plotWire()
     {
         Vector3 wirePos = new Vector3(-6, 0, 0); //Startposition of first wire part
-        foreach (int part in wire)
+
+		foreach (int part in wire)
         {
             switch (part) //reading out value of wire evaluation (1 = super, 2= good, 3 = meh, 4 = baaad)
             {
-                case 1:
-                    Instantiate(wire_thin, wirePos, Quaternion.Euler(0, 0, -90));
-                    break;
-                case 2:
-                    Instantiate(wire_medium, wirePos, Quaternion.Euler(0, 0, -90));
-                    break;
+				case 1:
+					GameObject spawnThin = (GameObject)Instantiate (wire_thin, wirePos, Quaternion.Euler (0, 0, -90));
+					spawnThin.transform.parent = invisible.transform;    
+					break;
+				case 2:
+					GameObject spawnMedium = (GameObject)Instantiate (wire_medium, wirePos, Quaternion.Euler (0, 0, -90));
+					spawnMedium.transform.parent = invisible.transform;
+					break;
                 case 3:
-                    Instantiate(wire_thick, wirePos, Quaternion.Euler(0, 0, -90));
-                    break;
-                case 4:
-                    Instantiate(wire_fat, wirePos, Quaternion.Euler(0, 0, -90));
-                    break;
+					GameObject spawnThick = (GameObject)Instantiate (wire_thick, wirePos, Quaternion.Euler (0, 0, -90));
+					spawnThick.transform.parent = invisible.transform;
+					break;
+				case 4:
+					Instantiate (wire_fat, wirePos, Quaternion.Euler (0, 0, -90));
+					Debug.Log ("Ups, das sollte nicht passieren O.O");
+					break;
                 default:
                     Debug.Log("Out of Bounds");
                     break;
