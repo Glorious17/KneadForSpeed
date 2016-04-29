@@ -40,7 +40,7 @@ public class Solidity : MonoBehaviour {
                 goodHitCombo = 0;
                 break;
             case 3:
-                
+			
                 strength -= 20;
                 goodHitCombo = 0;
                 break;

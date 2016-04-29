@@ -3,40 +3,29 @@ using System.Collections;
 
 public class Lights : MonoBehaviour {
 
-	public Light[] myLights;
-
-	private float faktor = 6f;
+	public GameObject[] myLights;
 
 	public bool[] red;
 	public bool[] yellow;
 	public bool[] green;
+	public bool[] grey;
 
 	private int maxLight = 4;
-
-	private float lampDuration = 0.5f;
+	public float alpha;
+	private float lampDuration = 0.2f;
+	private Color defaultColor;
 
 	void Start () 
 	{
+		defaultColor = new Color (0,0,0,0);
 		red = new bool[maxLight];
 		yellow = new bool[maxLight];
 		green = new bool[maxLight];
-
-
-		//Light position
-		float aspectRatio = (float)Screen.width/(float)Screen.height;
-
-		//rechte Lichter
-		myLights[0].transform.position += new Vector3 ((aspectRatio-1)*faktor, 0, 0);
-		myLights[1].transform.position += new Vector3 ((aspectRatio-1)*faktor, 0, 0);
-
-		//linke Lichter
-		myLights[2].transform.position -= new Vector3 ((aspectRatio-1)*faktor, 0, 0);
-		myLights[3].transform.position -= new Vector3 ((aspectRatio-1)*faktor, 0, 0);
-
+		grey = new bool[maxLight];
 
 		for (int i = 0; i < maxLight; i++) 
 		{
-			myLights [i].enabled = false;
+			myLights [i].GetComponent<Renderer>().material.color = defaultColor;
 		}
 	}
 
@@ -48,16 +37,14 @@ public class Lights : MonoBehaviour {
 			if (red [i] == true) 
 			{
 				red [i] = false;
-				myLights[i].color = Color.red;
-				myLights[i].enabled = true;
+				myLights [i].GetComponent<Renderer> ().material.color = new Color (1, 0, 0, alpha);
 				StartCoroutine (Wait (red[i], myLights[i]));
 			}
 				
 			if (yellow [i] == true) 
 			{
 				yellow [i] = false;
-				myLights[i].color = Color.yellow;
-				myLights [i].enabled = true;
+				myLights[i].GetComponent<Renderer>().material.color = new Color (1, 1, 0, alpha);
 				StartCoroutine (Wait (yellow[i], myLights[i]));
 
 			}
@@ -65,19 +52,25 @@ public class Lights : MonoBehaviour {
 			if (green [i] == true) 
 			{
 				green [i] = false;
-				myLights[i].color = Color.green;
-				myLights [i].enabled = true;
+				myLights[i].GetComponent<Renderer>().material.color = new Color (0, 1, 0, alpha);
 				StartCoroutine (Wait (green[i], myLights[i]));
+			}
+
+			if (grey [i] == true) 
+			{
+				grey [i] = false;
+				myLights [i].GetComponent<Renderer> ().material.color = new Color (0.1f, 0.1f, 0.1f, alpha);
+				StartCoroutine (Wait (grey[i], myLights[i]));
 			}
 		}
 	}
 
-	IEnumerator Wait(bool color, Light myLight)
+	IEnumerator Wait(bool color, GameObject myLight)
 	{
 		yield return new WaitForSeconds (lampDuration);
 		if (color != true) 
 		{
-			myLight.enabled = false;
+			myLight.GetComponent<Renderer> ().material.color = defaultColor;
 		}
 	}
 }
