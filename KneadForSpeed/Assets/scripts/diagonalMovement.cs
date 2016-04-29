@@ -8,10 +8,17 @@ public class diagonalMovement : MonoBehaviour
 
 	private float movementX = 3f;
 	private float movementZ = 3f;
+    private float patternMovementX = 3f;
+    private float patternMovementZ = 3f;
 
     private double randomSpawn = 100;
     private float zweiSpawnHaeufigkeit = 25f;
+    private int randomPattern;
+    private int randomizer;
+    private float patternTime = 4;
+    private int patternCounter = 0;
     private bool zweiterSpawn = false;
+    private bool specialPattern = false;
     private float spawntime = 3f;
     private float spawnSpeed = 5f;
     private float fasterSpawnTime = 0;
@@ -28,22 +35,42 @@ public class diagonalMovement : MonoBehaviour
 
     void Update()
     {
-        if (Time.realtimeSinceStartup >= spawntime)
+        if (!specialPattern)
         {
-            if (randomSpawn < zweiSpawnHaeufigkeit)
+            if (Time.realtimeSinceStartup >= spawntime)
             {
-                spawn();
-                zweiterSpawn = true;
-                spawn();
-                spawntime = Time.realtimeSinceStartup + spawnSpeed;
-                zweiterSpawn = false;
+                if (randomSpawn < zweiSpawnHaeufigkeit)
+                {
+                    spawn();
+                    zweiterSpawn = true;
+                    spawn();
+                    spawntime = Time.realtimeSinceStartup + spawnSpeed;
+                    zweiterSpawn = false;
+                }
+                else {
+                    spawn();
+                    Debug.Log(Time.realtimeSinceStartup);
+                    spawntime = Time.realtimeSinceStartup + spawnSpeed;
+                }
+                if (Random.Range(0, 100) < 10)
+                    specialPattern = true;
             }
-            else {
-                spawn();
-                Debug.Log(Time.realtimeSinceStartup);
-                spawntime = Time.realtimeSinceStartup + spawnSpeed;
-            }
+            randomizer = Random.Range(0, 1001);
         }
+        else
+        {
+            if(patternCounter == 0)
+                randomPattern = Random.Range(0, 2);
+
+            if (Time.realtimeSinceStartup >= patternTime)
+            {
+                pattern();
+                patternTime = Time.realtimeSinceStartup;
+                patternTime += 0.4f;
+            }
+            
+        }
+        
         if (fasterSpawnTime >= 10)
         {
             spawnSpeed /= 1.2f;
@@ -66,8 +93,13 @@ public class diagonalMovement : MonoBehaviour
 		s = Instantiate(signal);
 		randPos();
 		s.GetComponent<Rigidbody> ().AddForce (new Vector3 (movementX, 0, movementZ), ForceMode.Impulse);
-
 	}
+
+    void petternSpawn()
+    {
+        s = Instantiate(signal);
+        s.GetComponent<Rigidbody>().AddForce(new Vector3(movementX, 0, movementZ), ForceMode.Impulse);
+    }
 
 	void randPos()
 	{
@@ -107,4 +139,61 @@ public class diagonalMovement : MonoBehaviour
 			break;*/
 	}
 
+    void pattern()
+    {
+        switch (randomPattern)
+        {
+            case 0:
+                patternCircle();
+                break;
+            case 1:
+                petternMultiSpawn();
+                break;
+        }
+        if (patternCounter >= 20)
+        {
+            specialPattern = false;
+            patternCounter = 0;
+        }
+    }
+
+    void petternMultiSpawn()
+    {
+        if (randomizer < 250)
+        {
+            movementX *= 1;
+            movementZ *= 1;
+        }
+        else if (randomizer < 500)
+        {
+            movementX *= -1;
+            movementZ *= 1;
+        }
+        else if (randomizer < 750)
+        {
+            movementX *= -1;
+            movementZ *= -1;
+        }
+        else if (randomizer < 1000)
+        {
+            movementX *= 1;
+            movementZ *= -1;
+        }
+        patternCounter++;
+        petternSpawn();
+    }
+
+    void patternCircle()
+    {
+        if (patternCounter%2==0)
+            patternMovementX *= -1;
+        else
+            patternMovementZ *= -1;
+
+        movementX = patternMovementX;
+        movementZ = patternMovementZ;
+        patternCounter++;
+        Debug.Log(patternCounter);
+        petternSpawn();
+    }
 }
