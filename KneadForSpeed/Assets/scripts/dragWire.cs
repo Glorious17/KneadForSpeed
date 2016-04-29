@@ -13,7 +13,19 @@ public class dragWire : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.touchCount > 0) {
+			var touch = Input.GetTouch (0);
+			if (touch.phase == TouchPhase.Moved) {
+				startPos = new Vector3 (Mathf.Clamp (touch.position.x / Screen.width * 0.33f, 0, 8), 0, 0);
+
+			}
+
+			if (touch.deltaPosition.x > 0)
+				GameObject.Find ("Cube").transform.position += startPos;
+			else if (touch.deltaPosition.x < 0)
+				GameObject.Find ("Cube").transform.position -= startPos;
+		}
+
 	}
 
 	void OnMouseDown(){
