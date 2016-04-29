@@ -72,7 +72,7 @@ public class Touchscript : MonoBehaviour
 			GUI.good ();
 			Debug.Log("Good Shit");
 
-		}else if(distance < 0.5 && distance > 0.2)  //Mittelmäßiger Treffer
+		}else if(distance < 0.5 && distance > 0.2 || distance > -0.5 && distance < -0.2)  //Mittelmäßiger Treffer
 		{
 			lifebar.GetComponent<Solidity>().hit(1);
             feedback.Add(2);
@@ -90,8 +90,9 @@ public class Touchscript : MonoBehaviour
         }
         else
         {
-            lifebar.GetComponent<Solidity>().hit(2);
+            lifebar.GetComponent<Solidity>().hit(3);
             feedback.Add(4);
+			lichtFarbe = 3;
             GUI.failed();
             Debug.Log("You Suck!");
         }
@@ -111,6 +112,9 @@ public class Touchscript : MonoBehaviour
 			break;
 		case 2:
 			Licht.GetComponent<Lights>().green [lichtPos] = true;
+			break;
+		case 3:
+			Licht.GetComponent<Lights>().grey [lichtPos] = true;
 			break;
 		}
 
