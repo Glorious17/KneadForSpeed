@@ -5,6 +5,7 @@ public class dragWire : MonoBehaviour {
 
 	private Vector3 screenPoint;
 	private Vector3 offset;
+	private Vector3 startPos;
 
 	// Use this for initialization
 	void Start () {
