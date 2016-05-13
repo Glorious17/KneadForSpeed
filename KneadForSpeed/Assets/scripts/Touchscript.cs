@@ -127,6 +127,7 @@ public class Touchscript : MonoBehaviour
 
 		moveBack();
 
+		/*
 		//Mouse Positioning
 		if (Input.GetMouseButtonDown(0))
 		{
@@ -179,6 +180,8 @@ public class Touchscript : MonoBehaviour
 				Destroy(go); //deleting Object from scene
 			}
 		}
+		*/
+
 
 
 		//Touch Positioning
@@ -190,7 +193,7 @@ public class Touchscript : MonoBehaviour
 
 			for(int i = 0; i < Input.touchCount; i++)
 			{
-				if (mytouches[i].phase == TouchPhase.Began) 
+				if (mytouches[i].phase == TouchPhase.Ended) 
 				{
 
 					if (mytouches[i].position.y <= Screen.height / 2 && mytouches[i].position.x <= Screen.width / 2) 
@@ -225,7 +228,7 @@ public class Touchscript : MonoBehaviour
 					if (signals.Count > 0) //only when the triggerbox contains at least one signal 
 					{
 						Vector3 sigPos = signals[0].transform.position;
-						float distance = optimalPosition + sigPos.x; //bitte noch mit Kommentar versehen
+						float distance = optimalPosition - Mathf.Abs(sigPos.x); //bitte noch mit Kommentar versehen
 
 						Debug.Log(distance);
 						calculatePoints(distance); //score evaulation
