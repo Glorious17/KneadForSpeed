@@ -1,12 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\dragWire.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Touchscript.cs">
     <Files>
+      <File FileName="Assets\scripts\Touchscript.cs" Line="239" Column="7" />
       <File FileName="Assets\scripts\dragWire.cs" Line="8" Column="27" />
       <File FileName="Assets\scripts\EndSceneGUI.cs" Line="1" Column="1" />
       <File FileName="Assets\scripts\Lights.cs" Line="1" Column="1" />
       <File FileName="Assets\scripts\TriggerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\Touchscript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
