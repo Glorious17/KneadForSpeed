@@ -67,7 +67,7 @@ public class diagonalMovement : MonoBehaviour
             if (Time.realtimeSinceStartup >= patternTime)
             {
                 pattern();
-                patternTime = Time.realtimeSinceStartup + 0.4f;
+                patternTime = Time.realtimeSinceStartup + spawnSpeed;
             }
             
         }
