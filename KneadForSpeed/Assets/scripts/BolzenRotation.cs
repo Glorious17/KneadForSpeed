@@ -5,7 +5,10 @@ public class BolzenRotation : MonoBehaviour {
 
 	public float speed;
 	
-	// Update is called once per frame
+	/*
+	* objects which are attached with this script will rotate
+	*/
+
 	void Update () 
 	{
 		transform.Rotate(0, speed*Time.deltaTime, 0);

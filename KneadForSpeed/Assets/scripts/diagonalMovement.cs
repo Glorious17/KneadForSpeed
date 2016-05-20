@@ -9,22 +9,21 @@ public class diagonalMovement : MonoBehaviour
 	private float movementX = 3f;
 	private float movementZ = 3f;
 
-    //Das "movement" eines Patterns darf nicht zufällig geschehen. Sonst macht es keinen Sinn, Freunde. :/
     private float patternMovementX = 3f;
     private float patternMovementZ = 3f;
 
     private double randomSpawn = 100;
     private float zweiSpawnHaeufigkeit = 25f;
-    private int randomPattern; //Diese Variable wird später zufällig bestimmt und entscheidet welches "Special-Pattern" abgespielt wird
-    private int randomizer; //Eine Zufallsvariable die nach jedem normalen "Spawn" neu bestimmt wird. Die Variable hat Einfluss auf alle "Special-Pattern"
-    private float patternTime = 4; //Diese Variable sorgt dafür, dass ein "Special-Pattern" nicht innerhalb der ersten 20 Frames abgespielt wird.
-    private int patternCounter = 0; //Eine Variable die mitzählt, wie viele Spawns, während eines "Special-Pattern", bereits abgespielt wurden. 
+    private int randomPattern; 				//Diese Variable wird später zufällig bestimmt und entscheidet welches "Special-Pattern" abgespielt wird
+    private int randomizer; 				//Eine Zufallsvariable die nach jedem normalen "Spawn" neu bestimmt wird. Die Variable hat Einfluss auf alle "Special-Pattern"
+    private float patternTime = 4;		 	//Diese Variable sorgt dafür, dass ein "Special-Pattern" nicht innerhalb der ersten 20 Frames abgespielt wird.
+    private int patternCounter = 0; 		//Eine Variable die mitzählt, wie viele Spawns, während eines "Special-Pattern", bereits abgespielt wurden. 
     private bool zweiterSpawn = false;
     private bool specialPattern = false;
     private float spawntime = 3f;
     private float spawnSpeed = 5f;
     private float fasterSpawnTime = 0;
-    private float fastesSpeed = 0.6f; //Umso kleiner diese Zahl ist, umso schneller ist die maximale Geschwindigkeit der Spawns
+    private float fastesSpeed = 0.6f; 		//Umso kleiner diese Zahl ist, umso schneller ist die maximale Geschwindigkeit der Spawns
 	//private float faktor = 500f;
 
 	GameObject s;

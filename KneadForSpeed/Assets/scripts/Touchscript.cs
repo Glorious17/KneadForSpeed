@@ -13,10 +13,12 @@ public class Touchscript : MonoBehaviour
 	private GameObject triggerOR;
 	private GameObject triggerOL;
 
+	/*
 	public GameObject OL; //Gameobjects der Backen
 	public GameObject OR;
 	public GameObject UL;
 	public GameObject UR;
+	*/
 	public GameObject center;
 
 	public GameObject oOL; //Gameobjects der Ursprungspositionen der Backen (old ObenLinks etc.)
@@ -256,7 +258,7 @@ public class Touchscript : MonoBehaviour
 	}
 
 	void moveBack()
-	{
+	{ /*
 		OL.transform.position = Vector3.MoveTowards (OL.transform.position, oOL.transform.position, speed);
 		UL.transform.position = Vector3.MoveTowards (UL.transform.position, oUL.transform.position, speed);
 		OR.transform.position = Vector3.MoveTowards (OR.transform.position, oOR.transform.position, speed);
@@ -266,5 +268,6 @@ public class Touchscript : MonoBehaviour
 		UL.transform.rotation = UL.transform.rotation;
 		OR.transform.rotation = OR.transform.rotation;
 		UR.transform.rotation = UR.transform.rotation;
+		*/
 	}
 }
