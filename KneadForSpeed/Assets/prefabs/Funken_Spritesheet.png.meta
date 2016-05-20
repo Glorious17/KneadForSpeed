@@ -24,7 +24,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -49,9 +49,9 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 9
-  spritePivot: {x: .0768733695, y: .477569699}
+  spritePivot: {x: 0.07687337, y: 0.4775697}
   spriteBorder: {x: 9, y: 0, z: 1067, w: 0}
-  spritePixelsToUnits: 146.285721
+  spritePixelsToUnits: 146.28572
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -62,71 +62,166 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 178.571426
+        width: 178.57143
         height: 180
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 88.5, y: 84}
+        - {x: 81.5, y: 90}
+        - {x: -75.5, y: 90}
+        - {x: -80.5, y: 89}
+        - {x: -86.5, y: 79}
+        - {x: -86.5, y: -90}
+        - {x: 81.5, y: -90}
+        - {x: 88.5, y: -85}
+        - {x: 89.5, y: -83}
+        - {x: 89.5, y: 82}
     - name: Funken_Spritesheet_1
       rect:
         serializedVersion: 2
         x: 178
         y: 0
-        width: 178.571426
+        width: 178.57143
         height: 180
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 81.5, y: 90}
+        - {x: -72.5, y: 90}
+        - {x: -89.5, y: 81}
+        - {x: -89.5, y: -82}
+        - {x: -88.5, y: -82}
+        - {x: -74.5, y: -90}
+        - {x: 80.5, y: -90}
+        - {x: 88.5, y: -83}
+        - {x: 89.5, y: -82}
+        - {x: 89.5, y: 81}
     - name: Funken_Spritesheet_2
       rect:
         serializedVersion: 2
         x: 356
         y: 0
-        width: 178.571426
+        width: 178.57143
         height: 180
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74.5, y: 90}
+        - {x: -89.5, y: 80}
+        - {x: -89.5, y: -81}
+        - {x: -86.5, y: -81}
+        - {x: -74.5, y: -89}
+        - {x: -71.5, y: -90}
+        - {x: 82.5, y: -90}
+        - {x: 89.5, y: -86}
+        - {x: 89.5, y: 87}
+        - {x: 83.5, y: 90}
+      - - {x: -87.5, y: -83}
+        - {x: -89.5, y: -85}
+        - {x: -89.5, y: -89}
+        - {x: -82.5, y: -89}
+        - {x: -82.5, y: -84}
+        - {x: -84.5, y: -83}
     - name: Funken_Spritesheet_3
       rect:
         serializedVersion: 2
         x: 534
         y: 0
-        width: 178.571426
+        width: 178.57143
         height: 180
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -72.5, y: 90}
+        - {x: -76.5, y: 87}
+        - {x: -78.5, y: 86}
+        - {x: -89.5, y: 80}
+        - {x: -89.5, y: -83}
+        - {x: -74.5, y: -90}
+        - {x: 79.5, y: -90}
+        - {x: 89.5, y: -81}
+        - {x: 89.5, y: 82}
+        - {x: 82.5, y: 90}
+      - - {x: -89.5, y: -85}
+        - {x: -89.5, y: -88}
+        - {x: -86.5, y: -90}
+        - {x: -84.5, y: -90}
+        - {x: -82.5, y: -89}
+        - {x: -82.5, y: -86}
+        - {x: -85.5, y: -83}
+        - {x: -87.5, y: -83}
     - name: Funken_Spritesheet_4
       rect:
         serializedVersion: 2
         x: 712
         y: 0
-        width: 178.571426
+        width: 178.57143
         height: 180
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 79.5, y: 90}
+        - {x: -71.5, y: 90}
+        - {x: -75.5, y: 88}
+        - {x: -89.5, y: 79}
+        - {x: -89.5, y: -79}
+        - {x: -87.5, y: -79}
+        - {x: -75.5, y: -89}
+        - {x: -72.5, y: -90}
+        - {x: 80.5, y: -90}
+        - {x: 89.5, y: -82}
+        - {x: 89.5, y: 81}
+        - {x: 81.5, y: 88}
     - name: Funken_Spritesheet_5
       rect:
         serializedVersion: 2
         x: 890
         y: 0
-        width: 178.571426
+        width: 178.57143
         height: 180
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 82.5, y: 87}
+        - {x: 78.5, y: 90}
+        - {x: -73.5, y: 90}
+        - {x: -89.5, y: 82}
+        - {x: -89.5, y: -81}
+        - {x: -86.5, y: -80}
+        - {x: -76.5, y: -89}
+        - {x: -73.5, y: -90}
+        - {x: 78.5, y: -90}
+        - {x: 89.5, y: -79}
+        - {x: 89.5, y: 81}
     - name: Funken_Spritesheet_6
       rect:
         serializedVersion: 2
         x: 1068
         y: 0
-        width: 178.571426
+        width: 178.57143
         height: 180
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 79.5, y: 90}
+        - {x: -74.5, y: 90}
+        - {x: -87.5, y: 78}
+        - {x: -89.5, y: 77}
+        - {x: -89.5, y: -79}
+        - {x: -85.5, y: -80}
+        - {x: -73.5, y: -90}
+        - {x: 78.5, y: -90}
+        - {x: 83.5, y: -85}
+        - {x: 83.5, y: 86}
+    outline: []
   spritePackingTag: 7
   userData: 
   assetBundleName: 
