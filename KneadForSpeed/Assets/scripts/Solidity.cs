@@ -39,11 +39,6 @@ public class Solidity : MonoBehaviour {
                 strength -= 20;
                 goodHitCombo = 0;
                 break;
-            case 3:
-			
-                strength -= 20;
-                goodHitCombo = 0;
-                break;
         }
         transform.localScale = new Vector3(scale * (strength / 100), 1, 0.5f);
 

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/gamescene.unity
+- path: D:/Medieninformatik/4_Semester/KneadForSpeed_Dropbox/KneadForSpeed/Assets/gamescene.unity
   isLoaded: 1
   isActive: 1

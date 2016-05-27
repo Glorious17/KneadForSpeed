@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GUI : MonoBehaviour {
+public class GUI_Script : MonoBehaviour {
 
 	public static double score;
 	private static int multiplicity=1;
