@@ -30,6 +30,7 @@ public class Touchscript : MonoBehaviour
 
 	private float abstand = 2.5f;
 
+	private int feedbackCount;
 	private int ausLicht = 5;
 	private int lichtPos;
 	private int lichtFarbe;
@@ -66,10 +67,21 @@ public class Touchscript : MonoBehaviour
 
 	void calculatePoints(float distance)
 	{
+		feedbackCount = feedback.Count;
 		if(distance > - 0.2 && distance < 0.2)      //Guter Treffer
 		{
 			lifebar.GetComponent<Solidity>().hit(0);
-            feedback.Add(1);
+			if (feedback [feedbackCount - 1] == 1) {
+				feedback.Add (1);
+			} else if (feedback [feedbackCount - 1] == 2) {
+				if(feedbackCount>0)
+					feedback.Add (6);
+				feedback.Add (1);
+			} else if (feedback [feedbackCount - 1] == 3) {
+				if(feedbackCount>0)
+					feedback.Add (8);
+				feedback.Add (1);
+			}
 			lichtFarbe = 2;
 			GUI.good ();
 			Debug.Log("Good Shit");
@@ -77,7 +89,17 @@ public class Touchscript : MonoBehaviour
 		}else if(distance < 0.5 && distance > 0.2 || distance > -0.5 && distance < -0.2)  //Mittelmäßiger Treffer
 		{
 			lifebar.GetComponent<Solidity>().hit(1);
-            feedback.Add(2);
+			if (feedback [feedbackCount - 1] == 1) {
+				if(feedbackCount>0)
+					feedback.Add (5);
+				feedback.Add (2);
+			} else if (feedback [feedbackCount - 1] == 2) {
+				feedback.Add (2);
+			} else if (feedback [feedbackCount - 1] == 3) {
+				if(feedbackCount>0)
+					feedback.Add (9);
+				feedback.Add (2);
+			}
             lichtFarbe = 1;
 			GUI.medium ();
 			Debug.Log("Meh");
@@ -85,13 +107,24 @@ public class Touchscript : MonoBehaviour
 		else if(distance < 1.0 && distance > 0.5)   //Kein Treffer
 		{
             lifebar.GetComponent<Solidity>().hit(2);
-            feedback.Add(3);
+			if (feedback [feedbackCount - 1] == 1) {
+				if(feedbackCount>0)
+					feedback.Add (4);
+				feedback.Add (3);
+			} else if (feedback [feedbackCount - 1] == 2) {
+				if(feedbackCount>0)
+					feedback.Add (7);
+				feedback.Add (3);
+			} else if (feedback [feedbackCount - 1] == 3) {
+				feedback.Add (3);
+			}
             lichtFarbe = 0;
             GUI.bad();
             Debug.Log("That was Bad");
         }
         else
         {
+			//Unsinnig, kommt nie vor!
             lifebar.GetComponent<Solidity>().hit(3);
             feedback.Add(3);
 			lichtFarbe = 3;

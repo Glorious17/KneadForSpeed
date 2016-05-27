@@ -6,8 +6,7 @@ public class EndSceneGUI : MonoBehaviour {
 
     private List<int> wire = new List<int>();
 
-    public GameObject wire_thin, wire_medium, wire_thick, wire_fat, invisible;
-
+    public GameObject wire_thin, wire_medium, wire_thick, wire_fat, invisible, d_zu_m, d_zu_di, m_zu_d, m_zu_di, di_zu_d, di_zu_m;
 
     // Use this for initialization
     void Start () {
@@ -40,6 +39,7 @@ public class EndSceneGUI : MonoBehaviour {
 					GameObject spawnThin = (GameObject)Instantiate (wire_thin, wirePos, Quaternion.Euler (0, 0, -90));
 					spawnThin.transform.parent = invisible.transform;    
 					break;
+			
 				case 2:
 					GameObject spawnMedium = (GameObject)Instantiate (wire_medium, wirePos, Quaternion.Euler (0, 0, -90));
 					spawnMedium.transform.parent = invisible.transform;
@@ -49,10 +49,30 @@ public class EndSceneGUI : MonoBehaviour {
 					spawnThick.transform.parent = invisible.transform;
 					break;
 				case 4:
-					Instantiate (wire_fat, wirePos, Quaternion.Euler (0, 0, -90));
-					Debug.Log ("Ups, das sollte nicht passieren O.O");
+					GameObject spawnThinToThick = (GameObject)Instantiate (d_zu_di, wirePos, Quaternion.Euler (0, 0, -90));
+					spawnThinToThick.transform.parent = invisible.transform;
 					break;
-                default:
+				case 5:
+					GameObject spawnThinToMedium = (GameObject)Instantiate (d_zu_m, wirePos, Quaternion.Euler (0, 0, -90));
+					spawnThinToMedium.transform.parent = invisible.transform;
+					break;
+				case 6:
+					GameObject spawnMediumToThin = (GameObject)Instantiate (m_zu_d, wirePos, Quaternion.Euler (0, 0, -90));
+					spawnMediumToThin.transform.parent = invisible.transform;
+					break;
+				case 7: 
+					GameObject spawnMediumToThick = (GameObject)Instantiate (m_zu_di, wirePos, Quaternion.Euler (0, 0, -90));
+					spawnMediumToThick.transform.parent = invisible.transform;
+					break;
+				case 8:
+					GameObject spawnThickToThin = (GameObject)Instantiate (di_zu_d, wirePos, Quaternion.Euler (0, 0, -90));
+					spawnThickToThin.transform.parent = invisible.transform;
+					break;
+				case 9:
+					GameObject spawnThickToMedium = (GameObject)Instantiate (di_zu_m, wirePos, Quaternion.Euler (0, 0, -90));
+					spawnThickToMedium.transform.parent = invisible.transform;
+					break;
+				default:
                     Debug.Log("Out of Bounds");
                     break;
             }
