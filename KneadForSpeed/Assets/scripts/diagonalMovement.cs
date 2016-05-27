@@ -67,6 +67,7 @@ public class diagonalMovement : MonoBehaviour
             {
                 pattern();
                 patternTime = Time.realtimeSinceStartup + spawnSpeed;
+                spawntime = Time.realtimeSinceStartup + spawnSpeed;
             }
             
         }
@@ -83,7 +84,7 @@ public class diagonalMovement : MonoBehaviour
         fasterSpawnTime += Time.deltaTime;
 
         //spawning += Time.time;// * Time.deltaTime;
-                              // Debug.Log(spawning);
+        // Debug.Log(spawning);
 
     }
 
