@@ -54,7 +54,10 @@ public class diagonalMovement : MonoBehaviour
                     spawntime = Time.realtimeSinceStartup + spawnSpeed;
                 }
                 if (Random.Range(0, 100) % 20 == 0)
+                {
                     specialPattern = true;
+                    patternTime = Time.realtimeSinceStartup + spawnSpeed;
+                }
             }
             randomizer = Random.Range(0, 1001);
         }
