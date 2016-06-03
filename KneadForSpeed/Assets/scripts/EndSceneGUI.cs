@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 public class EndSceneGUI : MonoBehaviour {
 
+	public GUIStyle button = new GUIStyle();
+	private float screenWidth = Screen.width;
+	private float screenHeight = Screen.height;
+
     private List<int> wire = new List<int>();
 
     public GameObject wire_thin, wire_medium, wire_thick, wire_fat, invisible, d_zu_m, d_zu_di, m_zu_d, m_zu_di, di_zu_d, di_zu_m;
@@ -17,10 +21,16 @@ public class EndSceneGUI : MonoBehaviour {
 
 
     void OnGUI() {
-		int buttonWidth = 200, buttonHeight = 100;
-		GUILayout.BeginArea (new Rect (Screen.width-Screen.width/2 - buttonWidth/2, Screen.height - Screen.height / 2 - buttonHeight / 2, buttonWidth, buttonHeight));
+		button.fixedWidth = screenWidth / 6;
+		button.fixedHeight = screenHeight / 6;
+		button.fontSize = (int)screenWidth / 30;
+		Vector2 contentOffset = button.contentOffset;
+		contentOffset.y = button.fixedHeight/3.3333f;
+		button.contentOffset = contentOffset;
+		//int buttonWidth = 200, buttonHeight = 100;
+		GUILayout.BeginArea (new Rect (Screen.width/2- button.fixedWidth/2, Screen.height /4,300 ,300 ));
 		
-		if (GUILayout.Button("Back to the Menu"))
+		if (GUILayout.Button("Menü", button))
 		{
 			Application.LoadLevel(1);
 		}

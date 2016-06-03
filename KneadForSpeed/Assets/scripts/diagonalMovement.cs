@@ -36,6 +36,7 @@ public class diagonalMovement : MonoBehaviour
 
     void Update()
     {
+		if (GameObject.Find ("Main Camera").GetComponent<GUI_Script> ().isPaused == false){
         if (!specialPattern)
         {
             if (Time.realtimeSinceStartup >= spawntime)
@@ -89,7 +90,8 @@ public class diagonalMovement : MonoBehaviour
         //spawning += Time.time;// * Time.deltaTime;
         // Debug.Log(spawning);
 
-    }
+		}
+	}
 
 	void spawn()
 	{
@@ -246,4 +248,5 @@ public class diagonalMovement : MonoBehaviour
         patternCounter++;
         petternSpawn();
     }
+	
 }

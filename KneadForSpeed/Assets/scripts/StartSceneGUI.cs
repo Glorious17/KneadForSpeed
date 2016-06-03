@@ -3,6 +3,9 @@ using System.Collections;
 
 public class StartSceneGUI : MonoBehaviour {
 
+	public GUIStyle button = new GUIStyle();
+	private float screenWidth = Screen.width;
+	private float screenHeight = Screen.height;
 	// Use this for initialization
 	void Start () {
 	
@@ -13,13 +16,20 @@ public class StartSceneGUI : MonoBehaviour {
 	
 	}
 	void OnGUI() {
-		int buttonWidth = 200, buttonHeight = 100;
-		GUILayout.BeginArea(new Rect(Screen.width - Screen.width / 2 - buttonWidth / 2, Screen.height - Screen.height / 2 - buttonHeight / 2, buttonWidth, buttonHeight));
-		if (GUILayout.Button("Start"))
+		button.fixedWidth = screenWidth / 6;
+		button.fixedHeight = screenHeight / 6;
+		button.fontSize = (int)screenWidth / 30;
+
+		Vector2 contentOffset = button.contentOffset;
+		contentOffset.y = button.fixedHeight/3.3333f;
+		button.contentOffset = contentOffset;
+		//int buttonWidth = 200, buttonHeight = 100;
+		GUILayout.BeginArea(new Rect(Screen.width / 2 - button.fixedWidth/2, Screen.height /3, 300, 500));
+		if (GUILayout.Button("Start", button))
 		{
 			Application.LoadLevel(0);
 		}
-		if (GUILayout.Button("Back to the Menu"))
+		if (GUILayout.Button("Menü", button))
 		{
 			Debug.Log("NADA!");
 		}
