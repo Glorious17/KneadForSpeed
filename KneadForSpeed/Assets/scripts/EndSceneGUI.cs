@@ -86,7 +86,7 @@ public class EndSceneGUI : MonoBehaviour {
                     Debug.Log("Out of Bounds");
                     break;
             }
-            wirePos.x += 1; //translating the next wire part
+            wirePos.x += 0.5f; //translating the next wire part
         }
     }
 }

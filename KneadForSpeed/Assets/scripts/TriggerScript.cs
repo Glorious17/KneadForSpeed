@@ -45,7 +45,7 @@ public class TriggerScript : MonoBehaviour {
 			Destroy (col.gameObject);
 
 			Licht.GetComponent<Lights>().red [id] = true;
-			GameObject.Find ("Main Camera").GetComponent<Touchscript> ().Feedback.Add (3);
+			GameObject.Find ("Main Camera").GetComponent<Touchscript> ().calculatePoints(1.4f);
         }
     }
 

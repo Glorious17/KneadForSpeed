@@ -4,8 +4,8 @@ using System.Collections;
 public class GUI_Script : MonoBehaviour {
 
 	public static double score;
-	private static int multiplicity=1;
-    private static int combo = 0;
+	private static int multiplicity;
+    private static int combo;
 
 	public bool isPaused = false;
 
@@ -14,6 +14,13 @@ public class GUI_Script : MonoBehaviour {
 	public GUIStyle schrift = new GUIStyle();
 	public GUIStyle buttons = new GUIStyle();
 	private GUIStyle pauseButton = new GUIStyle();
+
+	void Start(){
+		score = 0;
+		multiplicity = 1;
+		combo = 0;
+	}
+
 
 	void OnGUI() {
 		schrift.fontSize = (int)screenWidth / 38;
@@ -88,8 +95,9 @@ public class GUI_Script : MonoBehaviour {
 
 	public static void bad (){
 
-        combo++;
-        score += multiplicity * 50;
+        combo = 0;
+		//beim verfehlen des Signals erhält man keine Punkte
+        //score += multiplicity * 50;
 	}
 
     public static void failed()

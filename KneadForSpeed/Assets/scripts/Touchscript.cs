@@ -61,17 +61,16 @@ public class Touchscript : MonoBehaviour
         lichtPos = ausLicht;
         lichtFarbe = ausLicht;
         Licht = GameObject.Find("Lights");
-
-        feedback.Add(1);
+		feedback.Clear ();
+		feedback.Add (1);
     }
 
-    void calculatePoints(float distance) { 
+    public void calculatePoints(float distance) { 
     
         feedbackCount = feedback.Count;
         if (distance > -0.2 && distance < 0.5)      //Guter Treffer
         {
             lifebar.GetComponent<Solidity>().hit(0);
-            feedback.Add(1);
             if (feedback[feedbackCount - 1] == 1)
             {
                 feedback.Add(1);
@@ -112,7 +111,6 @@ public class Touchscript : MonoBehaviour
                     feedback.Add(9);
                 feedback.Add(2);
             }
-            feedback.Add(2);
             lichtFarbe = 1;
             GUI_Script.medium();
             Debug.Log("Meh");
@@ -136,7 +134,6 @@ public class Touchscript : MonoBehaviour
             {
                 feedback.Add(3);
             }
-            feedback.Add(3);
             lichtFarbe = 0;
             GUI_Script.bad();
             Debug.Log("That was Bad");
