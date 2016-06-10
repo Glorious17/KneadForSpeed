@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{1BD8E38A-BA75-E866-D583-2770DCDB97E7}") = "KneadForSpeed", "Assembly-CSharp.csproj", "{7FD4E797-AC0B-FD21-D2D3-8C14EEEEC99A}"
+Project("{EDBB1CCC-06B4-E345-7DE2-B4DF23EC41F0}") = "kneadforspeed", "Assembly-CSharp.csproj", "{7E6AB376-A56E-4343-CB3E-F5347B15DE5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7FD4E797-AC0B-FD21-D2D3-8C14EEEEC99A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7FD4E797-AC0B-FD21-D2D3-8C14EEEEC99A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7FD4E797-AC0B-FD21-D2D3-8C14EEEEC99A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7FD4E797-AC0B-FD21-D2D3-8C14EEEEC99A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E6AB376-A56E-4343-CB3E-F5347B15DE5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E6AB376-A56E-4343-CB3E-F5347B15DE5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E6AB376-A56E-4343-CB3E-F5347B15DE5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E6AB376-A56E-4343-CB3E-F5347B15DE5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

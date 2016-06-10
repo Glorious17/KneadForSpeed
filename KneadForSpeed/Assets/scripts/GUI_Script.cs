@@ -8,19 +8,46 @@ public class GUI_Script : MonoBehaviour {
     private static int combo;
 
 	public bool isPaused = false;
+	public static bool song = false;
 
 	private float screenWidth = Screen.width;
 	private float screenHeight = Screen.height;
 	private GUIStyle schrift = new GUIStyle();
 	public GUIStyle buttons = new GUIStyle();
 	private GUIStyle pauseButton = new GUIStyle();
+	public AudioClip bgMusic1,bgMusic2,bgMusic3;
+	public AudioSource backmusic;
 
 	void Start(){
 		score = 0;
 		multiplicity = 1;
 		combo = 0;
+
+		backmusic = GetComponent<AudioSource>();
+		backmusic.clip = bgMusic1;
+		backmusic.Play();
+		backmusic.loop = true; 
 	}
 
+	void Update()
+	{
+		if (score > 5000 && score < 10000 && song != true)
+		{
+			song = true;
+			backmusic = GetComponent<AudioSource>();
+			backmusic.clip = bgMusic2;
+			backmusic.Play();
+			backmusic.loop = true;
+		}
+		else if (score > 10000 && song != false)
+		{
+			song = false;
+			backmusic = GetComponent<AudioSource>();
+			backmusic.clip = bgMusic3;
+			backmusic.Play();
+			backmusic.loop = true;
+		}
+	}
 
 	void OnGUI() {
 		schrift.fontSize = (int)screenWidth / 38;

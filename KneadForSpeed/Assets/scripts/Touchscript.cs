@@ -167,7 +167,7 @@ public class Touchscript : MonoBehaviour
 
         //moveBack();
 
-		/*
+
         //Mouse Positioning
         if (Input.GetMouseButtonDown(0))
         {
@@ -224,7 +224,7 @@ public class Touchscript : MonoBehaviour
                 Destroy(go); //deleting Object from scene
             }
         }
-		*/
+
 
         //Touch Positioning
 		if (Input.touchCount > 0)
