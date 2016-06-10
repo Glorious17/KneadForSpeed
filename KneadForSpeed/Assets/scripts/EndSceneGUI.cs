@@ -57,35 +57,35 @@ public class EndSceneGUI : MonoBehaviour {
 					break;
 			
 				case 2:
-					GameObject spawnMedium = (GameObject)Instantiate (wire_medium, wirePos, Quaternion.Euler (0, 0, -90));
+					GameObject spawnMedium = (GameObject)Instantiate (wire_medium, wirePos, Quaternion.Euler (0, 90, 0));
 					spawnMedium.transform.parent = invisible.transform;
 					break;
                 case 3:
-					GameObject spawnThick = (GameObject)Instantiate (wire_thick, wirePos, Quaternion.Euler (0, 0, -90));
+					GameObject spawnThick = (GameObject)Instantiate (wire_thick, wirePos, Quaternion.Euler (0, 90, 0));
 					spawnThick.transform.parent = invisible.transform;
 					break;
 				case 4:
-					GameObject spawnThinToThick = (GameObject)Instantiate (d_zu_di, wirePos, Quaternion.Euler (0, 0, -90));
+					GameObject spawnThinToThick = (GameObject)Instantiate (d_zu_di, wirePos, Quaternion.Euler (0, 90,0));
 					spawnThinToThick.transform.parent = invisible.transform;
 					break;
 				case 5:
-					GameObject spawnThinToMedium = (GameObject)Instantiate (d_zu_m, wirePos, Quaternion.Euler (0, 0, -90));
+					GameObject spawnThinToMedium = (GameObject)Instantiate (d_zu_m, wirePos, Quaternion.Euler (0, 90, 0));
 					spawnThinToMedium.transform.parent = invisible.transform;
 					break;
 				case 6:
-					GameObject spawnMediumToThin = (GameObject)Instantiate (m_zu_d, wirePos, Quaternion.Euler (0, 0, -90));
+					GameObject spawnMediumToThin = (GameObject)Instantiate (m_zu_d, wirePos, Quaternion.Euler (0, 90, 0));
 					spawnMediumToThin.transform.parent = invisible.transform;
 					break;
 				case 7: 
-					GameObject spawnMediumToThick = (GameObject)Instantiate (m_zu_di, wirePos, Quaternion.Euler (0, 0, -90));
+					GameObject spawnMediumToThick = (GameObject)Instantiate (m_zu_di, wirePos, Quaternion.Euler (0, 90, 0));
 					spawnMediumToThick.transform.parent = invisible.transform;
 					break;
 				case 8:
-					GameObject spawnThickToThin = (GameObject)Instantiate (di_zu_d, wirePos, Quaternion.Euler (0, 0, -90));
+					GameObject spawnThickToThin = (GameObject)Instantiate (di_zu_d, wirePos, Quaternion.Euler (0, 90, 0));
 					spawnThickToThin.transform.parent = invisible.transform;
 					break;
 				case 9:
-					GameObject spawnThickToMedium = (GameObject)Instantiate (di_zu_m, wirePos, Quaternion.Euler (0, 0, -90));
+					GameObject spawnThickToMedium = (GameObject)Instantiate (di_zu_m, wirePos, Quaternion.Euler (0, 90, 0));
 					spawnThickToMedium.transform.parent = invisible.transform;
 					break;
 				default:
