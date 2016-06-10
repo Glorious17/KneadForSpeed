@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class EndSceneGUI : MonoBehaviour {
 
 	public GUIStyle button = new GUIStyle();
+	private GUIStyle schrift = new GUIStyle();
 	private float screenWidth = Screen.width;
 	private float screenHeight = Screen.height;
 
@@ -20,7 +21,10 @@ public class EndSceneGUI : MonoBehaviour {
     }
 
 
-    void OnGUI() {
+	void OnGUI() {
+		schrift.fontSize = (int)screenWidth / 35;
+		schrift.normal.textColor = Color.black;
+		schrift.fontStyle = FontStyle.Bold;
 		button.fixedWidth = screenWidth / 6;
 		button.fixedHeight = screenHeight / 6;
 		button.fontSize = (int)screenWidth / 30;
@@ -28,12 +32,14 @@ public class EndSceneGUI : MonoBehaviour {
 		contentOffset.y = button.fixedHeight/3.3333f;
 		button.contentOffset = contentOffset;
 		//int buttonWidth = 200, buttonHeight = 100;
-		GUILayout.BeginArea (new Rect (Screen.width/2- button.fixedWidth/2, Screen.height /4,300 ,300 ));
+		GUILayout.BeginArea (new Rect (Screen.width/2- button.fixedWidth/2, Screen.height /4,Screen.width/2 ,Screen.height/2 ));
 		
 		if (GUILayout.Button("Menü", button))
 		{
 			Application.LoadLevel(1);
 		}
+		GUILayout.Label ("", schrift);
+		GUILayout.Label ("Score: " + GUI_Script.score, schrift);
 		GUILayout.EndArea ();
 	}
 

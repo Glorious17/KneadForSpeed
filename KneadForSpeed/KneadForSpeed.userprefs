@@ -2,28 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\GUI_Script.cs">
     <Files>
-      <File FileName="Assets\scripts\Touchscript.cs" Line="64" Column="3" />
-      <File FileName="Assets\scripts\GUI_Script.cs" Line="8" Column="29" />
-      <File FileName="Assets\scripts\StartSceneGUI.cs" Line="34" Column="18" />
-      <File FileName="Assets\scripts\BolzenRotation.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\CountDown.cs" Line="16" Column="38" />
-      <File FileName="Assets\scripts\diagonalMovement.cs" Line="101" Column="35" />
-      <File FileName="Assets\scripts\dragWire.cs" Line="4" Column="11" />
-      <File FileName="Assets\scripts\EndSceneGUI.cs" Line="17" Column="83" />
+      <File FileName="Assets\scripts\GUI_Script.cs" Line="67" Column="52" />
+      <File FileName="Assets\scripts\EndSceneGUI.cs" Line="27" Column="38" />
+      <File FileName="Assets\scripts\StartSceneGUI.cs" Line="1" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="KneadForSpeed" expanded="True">
-            <Node name="Assembly-CSharp" expanded="True">
-              <Node name="scripts" expanded="True">
-                <Node name="GUI_Script.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

@@ -11,7 +11,7 @@ public class GUI_Script : MonoBehaviour {
 
 	private float screenWidth = Screen.width;
 	private float screenHeight = Screen.height;
-	public GUIStyle schrift = new GUIStyle();
+	private GUIStyle schrift = new GUIStyle();
 	public GUIStyle buttons = new GUIStyle();
 	private GUIStyle pauseButton = new GUIStyle();
 
@@ -24,6 +24,7 @@ public class GUI_Script : MonoBehaviour {
 
 	void OnGUI() {
 		schrift.fontSize = (int)screenWidth / 38;
+		schrift.normal.textColor = Color.black;
 		buttons.fixedWidth = screenWidth / 6;
 		buttons.fixedHeight = screenHeight / 6;
 		buttons.fontSize = (int)screenWidth / 30;
@@ -63,14 +64,14 @@ public class GUI_Script : MonoBehaviour {
 		GUILayout.EndArea ();
 
 
-		GUILayout.BeginArea(new Rect(Screen.width - 105, 5, 100, 80));
+		GUILayout.BeginArea(new Rect(Screen.width/1.4f, 6, Screen.width/3, Screen.height/3));
 
-		GUILayout.Label("Combo: "+ combo);
+		GUILayout.Label("Combo: "+ combo, schrift);
 		GUILayout.EndArea();
 
-		GUILayout.BeginArea(new Rect(Screen.width -105, 38, 100, 80));
+		GUILayout.BeginArea(new Rect(Screen.width /1.4f, schrift.fontSize+5, Screen.width/3, Screen.height/3));
 
-		GUILayout.Label("Score: " + score);
+		GUILayout.Label("Score: " + score, schrift);
 		GUILayout.EndArea();
 
 	}
