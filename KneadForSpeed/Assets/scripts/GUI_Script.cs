@@ -35,7 +35,7 @@ public class GUI_Script : MonoBehaviour {
 		contentOffset.y = buttons.fixedHeight/3.3333f;
 		buttons.contentOffset = contentOffset;
 		 
-		GUILayout.BeginArea (new Rect(Screen.width /2.35f, Screen.height / 2.5f, 200, 200));
+		GUILayout.BeginArea (new Rect(Screen.width /2.35f, Screen.height / 2.5f, Screen.width/2, Screen.height/2));
 		if (!isPaused) {	
 			if (GUILayout.Button ("", pauseButton)) {
 				isPaused = true;
@@ -48,7 +48,7 @@ public class GUI_Script : MonoBehaviour {
 		}
 		GUILayout.EndArea ();
 		
-		GUILayout.BeginArea (new Rect(Screen.width / 2 - (buttons.fixedWidth/2), Screen.height / 3, 300, (int)Screen.height));
+		GUILayout.BeginArea (new Rect(Screen.width / 2 - (buttons.fixedWidth/2), Screen.height / 3, Screen.width/2, (int)Screen.height));
 		if (isPaused) {
 			if(GUILayout.Button("Weiter", buttons)){
 				isPaused = false;
@@ -64,12 +64,12 @@ public class GUI_Script : MonoBehaviour {
 		GUILayout.EndArea ();
 
 
-		GUILayout.BeginArea(new Rect(Screen.width/1.4f, 6, Screen.width/3, Screen.height/3));
+		GUILayout.BeginArea(new Rect(Screen.width/1.3f, 6, Screen.width/3, Screen.height/3));
 
 		GUILayout.Label("Combo: "+ combo, schrift);
 		GUILayout.EndArea();
 
-		GUILayout.BeginArea(new Rect(Screen.width /1.4f, schrift.fontSize+5, Screen.width/3, Screen.height/3));
+		GUILayout.BeginArea(new Rect(Screen.width /1.3f, schrift.fontSize+5, Screen.width/3, Screen.height/3));
 
 		GUILayout.Label("Score: " + score, schrift);
 		GUILayout.EndArea();

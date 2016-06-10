@@ -24,7 +24,7 @@ public class StartSceneGUI : MonoBehaviour {
 		contentOffset.y = button.fixedHeight/3.3333f;
 		button.contentOffset = contentOffset;
 		//int buttonWidth = 200, buttonHeight = 100;
-		GUILayout.BeginArea(new Rect(Screen.width / 2 - button.fixedWidth/2, Screen.height /3, 300, 500));
+		GUILayout.BeginArea(new Rect(Screen.width / 2 - button.fixedWidth/2, Screen.height /3, Screen.width/2, Screen.height/2));
 		if (GUILayout.Button("Start", button))
 		{
 			Application.LoadLevel(0);

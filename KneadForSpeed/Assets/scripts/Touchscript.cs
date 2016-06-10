@@ -167,10 +167,11 @@ public class Touchscript : MonoBehaviour
 
         //moveBack();
 
-
+		/*
         //Mouse Positioning
         if (Input.GetMouseButtonDown(0))
         {
+			Debug.Log (Input.mousePosition);
             if (Input.mousePosition.y <= Screen.height / 2)
             {
                 //unten links
@@ -223,6 +224,7 @@ public class Touchscript : MonoBehaviour
                 Destroy(go); //deleting Object from scene
             }
         }
+		*/
 
         //Touch Positioning
 		if (Input.touchCount > 0)
@@ -235,34 +237,41 @@ public class Touchscript : MonoBehaviour
 			{
 				if (mytouches[i].phase == TouchPhase.Ended) 
 				{
+					if(mytouches[i].position.x >= Screen.width*3/8 && mytouches[i].position.x <= Screen.width*5/8 && mytouches[i].position.y >=Screen.height*2/6 && mytouches[i].position.y <= Screen.height*4/6)
+					{
+					}
 
-					if (mytouches[i].position.y <= Screen.height / 2 && mytouches[i].position.x <= Screen.width / 2) 
+					else
 					{
-						//unten links
-                        //moveTo(triggerUL.GetComponent<TriggerScript>().getCurrentBolzen());//moving the Backe to the Center 
-                        signals = triggerUL.GetComponent<TriggerScript>().Signals;
-						lichtPos = 3;
-					}
-					if (mytouches [i].position.y > Screen.height / 2 && mytouches [i].position.x <= Screen.width / 2) 
-					{
-						//oben links
-                        //moveTo(triggerOL.GetComponent<TriggerScript>().getCurrentBolzen());
-						signals = triggerOL.GetComponent<TriggerScript>().Signals;
-						lichtPos = 2;
-					}
-					//oben rechts
-					if (mytouches[i].position.x > Screen.width / 2 && mytouches [i].position.y > Screen.height / 2) 
-					{
-                       // moveTo(triggerOR.GetComponent<TriggerScript>().getCurrentBolzen());
-						signals = triggerOR.GetComponent<TriggerScript>().Signals;
-						lichtPos = 0;
-					}
-					//unten rechts
-					if (mytouches[i].position.x > Screen.width / 2 && mytouches [i].position.y <= Screen.height / 2)
-					{
-                        //moveTo(triggerUR.GetComponent<TriggerScript>().getCurrentBolzen());
-						signals = triggerUR.GetComponent<TriggerScript>().Signals;
-						lichtPos = 1;
+						
+						if (mytouches[i].position.y <= Screen.height / 2 && mytouches[i].position.x <= Screen.width / 2) 
+						{
+							//unten links
+	                        //moveTo(triggerUL.GetComponent<TriggerScript>().getCurrentBolzen());//moving the Backe to the Center 
+	                        signals = triggerUL.GetComponent<TriggerScript>().Signals;
+							lichtPos = 3;
+						}
+						if (mytouches [i].position.y > Screen.height / 2 && mytouches [i].position.x <= Screen.width / 2) 
+						{
+							//oben links
+	                        //moveTo(triggerOL.GetComponent<TriggerScript>().getCurrentBolzen());
+							signals = triggerOL.GetComponent<TriggerScript>().Signals;
+							lichtPos = 2;
+						}
+						//oben rechts
+						if (mytouches[i].position.x > Screen.width / 2 && mytouches [i].position.y > Screen.height / 2) 
+						{
+	                       // moveTo(triggerOR.GetComponent<TriggerScript>().getCurrentBolzen());
+							signals = triggerOR.GetComponent<TriggerScript>().Signals;
+							lichtPos = 0;
+						}
+						//unten rechts
+						if (mytouches[i].position.x > Screen.width / 2 && mytouches [i].position.y <= Screen.height / 2)
+						{
+	                        //moveTo(triggerUR.GetComponent<TriggerScript>().getCurrentBolzen());
+							signals = triggerUR.GetComponent<TriggerScript>().Signals;
+							lichtPos = 1;
+						}
 					}
 
 					if (signals.Count > 0) //only when the triggerbox contains at least one signal 
